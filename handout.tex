@@ -1,0 +1,494 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,german]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\usepackage{tikz}
+\usepackage{bbold}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{breqn}
+\usetikzlibrary{shapes,shadows,arrows,decorations.markings}
+\usetikzlibrary{decorations.pathreplacing,calc}
+
+
+\newtheorem{theorem}{Satz}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\inftyint}{\int_{-\infty}^{\infty}}
+\newcommand{\intR}{\int_{\mathbb{R}}}
+\newcommand{\intRRR}{\int_{\mathbb{R}^3}}
+\newcommand{\opd}[2][\vphantom{1}]{\!\operatorname{d}^{#1}\! #2\ }
+\newcommand{\opdpath}{\opd{\mu(p)}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\residue}{\operatorname{Res}}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vp}{\vec{p}}
+\newcommand{\vacuumt}{\langle 0 |}
+\newcommand{\vacuum}{| 0 \rangle}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\inHS}{{}^{(3)}\!}
+\newcommand{\VSthree}{\mu(\mathcal{S}^3)}
+
+\title{Zeitparadoxon in der Quantengravitation}
+\subtitle{Im Rahmen des Seminars ,,Ausgewählte Probleme der Quantentheorie``}
+\author{Clemens Kerschbaumer}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\section{Überblick über mathematische Konzepte der Differentialgeometrie}
+		Eine Mannigfaltigkeit kann intuitiv definiert werden, als ein Objekt, das sich lokal, so verhällt wie ein $\mathbb{R}^n$. Zum Beispiel
+		ist in ihrer Gesamtheit die Erde (mehr oder weniger) eine Kugel. Jedoch sieht sie von unserer Perspektive aus betrachtet verhältnismäßig flach aus.
+		
+		Die Erde kann als eingebettete Fläche in einem dreidimensionalen Raum angesehen werden.
+		Allgemein bezeichnet man eine eingebettete Manigfaltigkeit mit Dimension $m$ Hyperebene 
+		(im folgenden bezeichnet $\Sigma$ immer eine Hyperebene), falls die die Dimension $m=n-1$. 
+		
+		\begin{paragraph}{Die Metrik:} Metriken sind im allgemeinen Abbildungen, die Distanzen messen. In der allgemeinen
+			Relativitätstheorie wird dieses Konzept bekanntlich verallgemeinert, da die Metrik hier auch negative
+			Werte annehmen kann. Der Abstand zwischen zwei Punkten auf einer Mannigfaltigkeit kann als die kürzeste Länge 
+			aller möglichen Wege (in Analogie zur vertrauten euklidischen Metrik) angegeben werden, sogenannte Geodäten.
+			
+			Formal lässt sich das mithilfe des Metriktensors beschreiben (man hört oft, dass beim Metriktensor auch nur von
+			der Metrik gesprochen wird). Der Metriktensor kann sich intuitiv als eine Vorschrift vorgestellt werden, die an jedem
+			Punkt der Mannigfaltigkeit angiebt wie sehr die uns vertrauten Längen gestaucht bzw gestreckt werden, wenn 
+			man entlang eines Weges geht. Infinitesimal schreibt man oft
+			\begin{align}
+				{\rm d}s^2=g_{\mu\nu} {\rm d}x^\mu{\rm d}x^\nu.
+				\label{equ:infline}
+			\end{align}
+			Das legt nahe, dass man, nach Wahl einer geeigneten Basis, den Metriktensor als Matrix schreiben kann.
+			
+			Als Beispiel kann man sich Zylinderkoordinaten vorstellen. Der Zylinder mit fixem Radius $r$ ist eine 
+			zweidimensionale Mannigfaltigkeit mit der Parametrisierung:
+			\begin{align}
+				\vec{x}(\phi,z)=\left( 
+				\begin{array}{c}
+				r\cos(\phi)\\
+				r\sin(\phi)\\
+				z
+				\end{array}
+				\right)
+			\end{align}
+			\begin{figure}
+				\centering
+				\include{zylinder}
+				\caption{Zylinder als Mannigfaltigkeit.}
+			\end{figure}
+			Wenn man in Zylinderkoordinaten wechselt, ist ja bekannt, dass das infinitesimale Linienelement nichts anderes als
+			\begin{align*}
+				{\rm d}s^2=r{\rm d}\phi^2 + {\rm d}z^2
+			\end{align*}
+			ist. Daraus lässt sich, vergleicht man diese Gleichung mit (\ref{equ:infline}), die zugehörige Matrix in der Standardbasis ablesen:
+			\begin{align*}
+				g=\left(\begin{array}{ccc} r & 0\\0 & 1 \end{array}\right).
+			\end{align*}
+			Man sieht hier deutlich: Wenn man einen konstanten Winkel abfährt, wird der zurückgelegte Weg größer falls $r>1$ (der Metriktensor streckt also
+			Wege entlang einer Änderung in $\phi$ entsprechend dem Radius) bzw kleiner falls $r<1$ verglichen mit dem Weg im kartesischen Koordinatensystem,
+			das sich aus Winkel und Höhenangabe zusammensetzt.
+		\end{paragraph}
+		\begin{paragraph}{Die kovariante Ableitung:}
+			Man nehme als Beispiel wieder eine Fläche, eingebettet im $\mathbb{R}^3$. Entlang dieser Fläche soll eine Kurve verlaufen. Wie üblich 
+			kann man die Ableitung der Kurve an einem beliebigen Punkt bilden und erhällt den Tangentenvektor. Alle möglichen Tangentenvektoren,
+			aller möglichen Kurven konstituieren an jedem Punkt der ebene zusammen eine Menge, den sogenannten Tangentialraum $T_p(M)$
+			(oder in diesem Fall, Tangentialebene). Tatsächlich kann man zeigen, dass es sich hierbei um einen Vektorraum handelt. Die Basisvektoren
+			sind einfach nur die Ableitungen der Parametrisierungen. Wieder dienen Zylinderkoordinaten als anschauliches Beispiel. 
+			Die Ableitung der Parametrisierung ergeben
+			\begin{align*}
+				\vec{e}_\phi&=\left(\begin{array}{c} -r\sin(\phi)\\ r\cos(\phi)\\ 0\end{array}\right)\\
+				\vec{e}_z&=\left(\begin{array}{c} 0\\0\\1\end{array}\right)
+			\end{align*}
+			Nun kann man bekanntlich auch die Ableitung von Vektoren bilden. Geht man naiv vor und nimmt wie zuvor die reguläre Ableitung 
+			führt das auf gekrümmten Flächen dazu, dass der Vektor zum einen in der Tangentialebene verändert (für ein kleines ${\rm d}x\in T_p(M)$)
+			und zugleich normal zur Ebene (${\rm d}n\not \in T_p(M)$). Die Normalveränderung ist jedoch nicht ,,physikalisch`` (bzw. sinnvoll miteinzubeziehen)
+			da der Punkt gar nicht anders kann, als der Ebene zu folgen. Er muss sich sozusagen nicht selbst mitdrehen, das erledigt die Zwangsbedingungen,
+			die verlangt, dass die Kurve in der Fläche bleibt.
+			
+			Die Vektoren können mithilfe der Basisvektoren in der Form
+			\begin{align}
+				v=a\vec{x}_u+b\vec{x}_v
+			\end{align}
+			geschrieben werden. Achtung: Das ist \textit{kein} dreidimensionaler Vektorraum, obwohl die Vektoren $\vec{x}_u$, in der Standardbasis ausgedrückt 3 Komponenten
+			besitzen. Vielmehr kann man sich das Konstrukt als Unterraaum (genauer: affinen Unterraum) vorstellen. Konkret für die Kurve gilt, dass $a=\dot{u}$ und
+			$b=\dot{v}$ (Kettenregel beim bilden des Tangentenvektors).
+			
+			Beschränkt man sich nur auf diesen Raum, kann man
+			die Vektoren auch schreiben als
+			\begin{align}
+				v=\left(\begin{array}{c} a \\ b\end{array}\right).
+			\end{align}
+			Würde man nur die Komponenten von $v$ differenzieren lässt sich die Krümmung nicht miteinbeziehen. Daher muss man kurz wieder den Umgebungsraum
+			betrachtet.
+			Der im $\mathbb{R}^3$ liegenden Vektor ergibt differenziert
+			\begin{align}
+				\frac{{\rm d}}{{\rm d}t}(a\vec{x}_u+b\vec{x}_v)=&\dot{a}\vec{x}_u+\dot{b}\vec{x}_v\notag\\
+				&+a\vec{x}_{uu}\dot{u}+a\vec{x}_{uv}\dot{v}+b\vec{x}_{vu}\dot{u}+b\vec{x}_{vv}\dot{v}.
+				\label{equ:covderiv1}
+			\end{align}
+			Hier wurde die Kettenregel verwendet.
+			Man will, wie oben besprochen nur den Teil, der sich -- mehr oder weniger -- im Raum abspielt (intrinsische Größe) isolieren. Dadurch, dass die 
+			$\vec{x}_{uu}$, $\vec{x}_{uv}$ und $\vec{x}_{vv}$ Vektoren im $\mathbb{R}^3$ sind, lassen sie sich beispielsweise in der Basis $\vec{x}_{u},\ \vec{x}_{v}$
+			und $n$ ausdrücken:
+			\begin{align}
+				\vec{x}_{uu}&=\Gamma^1_{11} \vx_u+\Gamma^2_{11}\vx_v+L_1 n,\\
+				\vx_{uv}&=\Gamma^1_{12}\vx_u+\Gamma^2_{12}\vx_v +L_2 n,\\
+				\vx_{vv}&=\Gamma^1_{22}\vx_u+\Gamma^2_{22}\vx_v+L_3 n.
+			\end{align}
+			Die $\Gamma^i_{jk}$ und $L_i$ sind a priori nur passend gewählte Faktoren.
+			Setzt man dies in (\ref{equ:covderiv1}) ein und fasst zusammen erhällt man, wenn man die Normalkomponenten wie gewünscht ignoriert 
+			\begin{align}
+				\frac{{\rm D} v(t)}{{\rm d}t}=\nabla_{v(t)} v(t) :=& (\dot{a} + \Gamma^1_{11}a^2+\Gamma^1_{12}ab+\Gamma^1_{22}b^2)\vx_u+\notag\\
+				+&(\dot{b} + \Gamma^2_{11}a^2+\Gamma^2_{12}ab+\Gamma^2_{22}b^2)\vx_v.
+			\end{align}
+			Diese Gleichung beschreibt wie sich ein Tangentialvektor entlang einer Kurve in einer gekrümmten Fläche im Tangentialraum verhällt, wenn man entlang dieser Kurve wandert.
+			Das definiert die kovariante Ableitung. Wenn man entlang der Koordinatenachsen ableitet, kann man die kovariante Ableitung elegant mit der Indexnotation
+			schreiben:
+			\begin{align}
+				\nabla_i v^j=\partial_i v^j + \Gamma^j_{ki}v^k,
+			\end{align}
+			wobei $i=1,2$. Diese Gleichungen (für jede Komponente) werden bald in einer etwas allgemeineren Form abgeleitet werden und tragen häufig den Namen ,,Gauss-Weingarten Gleichungen``.
+		\end{paragraph}
+		Für vierdimensionale Mannigfaltigkeiten lässt sich diese Definition verallgemeinern:
+		\begin{align*}
+			\nabla_\mu v^\nu=\partial_\mu v^\nu +\Gamma^\nu_{\rho\mu}v^\rho.
+		\end{align*}
+		Für die in der allgemeinen Relativitätstheorie üblichen kovarianten Ableitung (siehe Levi-Civita Zusammenhang) lassen sich die Christoffelsymbole
+		über die Formel
+		\begin{align}
+			\Gamma^\mu_{\nu\rho}=\frac{1}{2}g^{\mu\sigma}(\partial_\rho g_{\sigma \nu}+\partial_\nu g_{\sigma \rho}-\partial_\sigma g_{\nu\rho}).
+			\label{def:christ}
+		\end{align}
+		
+		Die folgenden Abschnitte werden zur Ableitung der allgemeinen Form der Wheeler-DeWitt Gleichung benötigt. Für den im Vortrag
+		besprochenen Minisuperspace sind diese Überlegungen nicht unbedingt notwendig. Es wird lediglich die Definition der extrinsischen Krümmung $K$ benötigt.
+		\begin{paragraph}{Extrinsische Krümmung:}
+		Auf Hyperebenen lässt sich die Abbildung (Weingartenabbildung)
+		\begin{align*}
+			L:\ T_p(\Sigma)&\rightarrow T_p(\Sigma) \\
+				v&\mapsto \nabla_v n
+		\end{align*}
+		definieren, welche bis auf Vorzeichenwahl des Normalvektors eindeutig ist. $\nabla_v$ bezeichnet hierbei die kovariante Ableitung 
+		des Umgebungsraumes.
+		\begin{proposition}{Proposition:} $L$ ist sebstadjungiert (d.h. für ein inneres Produkt definiert im Umgebungsraum $\mathbb{R}^n$, gilt 
+			$\forall u,v\in \mathbb{R}^n:\langle u,L(v)\rangle=\langle L(u),v\rangle)$ 
+		\end{proposition}
+		Die Definition der Weingartenabbildung und die damit verbundene Eigenschaft legen die Definition einer neuen Größe nahe.
+		Intuitiv lässt sich die Krümmung einer Fläche messen, indem man die Änderungsrate der Tangentialebene (oder equivalent, des Normalenvectors misst).
+		Mathematisch lässt sich das mittels der Weingartenabbildung ausdrücken:
+		\begin{definition} Extrinisische Krümmung K:
+			\begin{align}
+				K:\ T_p(\Sigma)\times T_p(\Sigma)&\rightarrow \mathbb{R} \label{def:extrcurv} \\
+					(v,u)&\mapsto -\langle v,L(u)\rangle.\notag
+			\end{align}
+		\end{definition}
+		Im folgenden wird oft die einsteinsche Summenkonvention angewandt, was die Wahl einer Basis notwendig macht. In der Standardbasis
+		ergibt sich daher für die Krümmung $K_{ij}=K(e_i,e_j)$. Desweiteren wird die Notation $\nabla_i:=\nabla_{e_i}$ genützt werden.
+
+		Nun lässt sich die kovariante Ableitung, definiert auf der Hyperebene, mit der kovarianten Ableitung des Umgebungsraumes in Beziehung bringen.
+		Offensichtlich lässt sich der Tangentialraum $T_p(\mathbb{R}^n)$ des Einbettungsraumes, schreiben als direkte Summe:
+		\begin{align}
+			T_p(\mathbb{R}^n) = \operatorname{span}(n)\oplus T_p(\Sigma).
+		\end{align}
+		Die kovariante Ableitung auf der Hyperebene ist definiert als die Projektion der kovarianten Ableitung des Umgebungsraumes auf die Tangentialräume
+		des Hyperraumes $\inHS\nabla:=P\circ \nabla$, wobei
+		\begin{align*}
+			P:\ T_p(\mathbb{R}^n)&\rightarrow T_p(\Sigma)\\
+				v&\mapsto v-|\langle v,n\rangle| n.
+		\end{align*}
+		
+		\begin{theorem} Gauss-Weingarten Gleichungen:
+			\begin{align}
+				\nabla_i e_j=-K_{ij}n+{}^{(3)}\Gamma^k_{ij}e_k.
+			\end{align}
+		\end{theorem}
+		\begin{proof}
+			Aus der Leibnizregel ($\nabla_i \langle v,n\rangle =\langle v,\nabla_i n\rangle + \langle \nabla_i v,n\rangle$) und der Orthogonalität von $v$ und $n$ folgt
+			\begin{align*}
+				\langle v,\nabla_i n\rangle = -\langle \nabla_i v,n\rangle
+			\end{align*}
+			was man zusammen mit Definition der Krümmung $K_{ij}$ die Behauptung bestätigt:
+			\begin{align*}
+				(\inHS\nabla_i e_j)^\mu&=P^\mu_\nu\nabla_i\delta^\nu_j=(\delta^\mu_\nu + n^\mu n_\nu)\nabla_i \delta^\mu_j=\\
+				&=(\nabla_i e_j)^\mu + n^\mu n_\nu\nabla_i e_j^\nu=(\nabla_i e_j)^\mu - n^\mu e_j^\nu\nabla_i n_\nu=(\nabla_i e_j - n K_{ij})^\mu.
+			\end{align*}
+		\end{proof}
+		Damit lässt sich folgender Satz beweisen:
+		\begin{theorem} Gauss-Codazzi Gleichungen:
+			\begin{align}
+				{R^0}_{ijk}&=\inHS\nabla_j K_{ik}-\inHS\nabla_k K_{ji} \\
+				R_{mijk}&=-(K_{ij}K_{mk}-K_{ik}K_{mj})+\inHS R_{mijk}
+			\end{align}
+			\label{thm:gce}
+		\end{theorem}
+		\begin{proof}
+			Mithilfe des vorherigen Lemmas ergibt sich:
+			\begin{align*}
+				\nabla_i\nabla_j e_k &= \nabla_i(K_{jk}n+\inHS\Gamma^m_{jk}e_m)=\\
+									 &= K_{jk,i}n+K_{jk}\nabla_i n+\inHS\Gamma^m_{jk,i}e_m+\inHS\Gamma^m_{jk}\nabla_i e_m=\\
+									 &= K_{jk,i}n+K_{jk}{K_i}^m e_m+\inHS\Gamma^m_{jk,i}e_m+\inHS\Gamma^m_{jk}(K_{im}n+\inHS\Gamma^l_{im}e_l)=\\
+									 &= (K_{jk,i}+\inHS\Gamma^m_{jk}K_{im})n+(K_{jk}{K_i}^l+\inHS\Gamma^l_{jk,i}+\inHS\Gamma^m_{jk}\inHS\Gamma^l_{im})e_l.
+			\end{align*}
+			Eingesetzt in die Definition des Riemanntensors ergibt sich:
+			\begin{align*}
+				{R^\alpha}_{ijk}e_\alpha =&\nabla_i\nabla_j e_k-\nabla_j\nabla_i e_k=\\
+										 =&(K_{jk,i}+\inHS\Gamma^m_{jk} K_{im}-K_{ik,j}-\inHS\Gamma^m_{ik}K_{jm})n+\\
+										 &+(K_{jk}{K_i}^m-K_{ik}{K_j}^m+\inHS {R^m}_{ijk})e_m,
+			\end{align*}
+			wobei benutzt wurde, dass
+			\begin{align*} 
+				\inHS {R^m}_{ijk}=\inHS\Gamma^m_{jk,i}-\inHS\Gamma^m_{ik,j}+\inHS\Gamma^l_{jk}\inHS\Gamma^m_{il}-\inHS\Gamma^l_{ik}\inHS\Gamma^m_{jl}.
+			\end{align*}
+			Aus der Orthogonalität der $e_\alpha$ folgt direkt:
+			\begin{align*}
+				{R^0}_{ijk}&=K_{jk,i}+\inHS\Gamma^m_jk K_{im}-K_{ik,j}-\inHS\Gamma^m_{ik}K_{jm}=\inHS\nabla_i K_{jk}-\inHS\nabla_j K_{ik}\\
+				{R^m}_{ijk}&=K_{jk}{K_i}^m-K_{ik}{K_j}^m+\inHS {R^m}_{ijk}
+			\end{align*}
+		\end{proof}
+		Für nähere Informationen zu klassischer Differentialgeometrie von Flächen, siehe \cite{docarmo76}.
+		\end{paragraph}
+	\section{Retrospektive: Klassische Feldtheorie}
+		In der klassischen Feldtheorie übernehmen, die in der klassischen klassischen
+		Mechanik mittels Indizes durchnummerierten verallgemeinerten Koordinaten,
+		glatte Felder, wobei die Rolle der Indizes durch Raumzeitpunkte abgelöst wird.
+		Anstatt der Summe über alle $i$ in der Lagrangefunktion schreibt man ein
+		Raumintegral über eine Lagrangedichte, über die wiederum die Wirkung angegeben werden
+		kann:
+		\begin{align}
+			S[\varphi,t]=\int_{t_1}^{t_2}{\rm d}t\int_{\mathbb{R}^3}{\rm d}^3x \mathcal{L}(\phi,\partial_\mu \phi,t).
+		\end{align}
+		Variation des Feldes liefert die Euler-Lagrangegleichung für Felder:
+		\begin{align}
+			\partial_\mu \frac{\partial \mathcal{L}}{\partial (\partial_\mu \varphi)}-\frac{\partial \mathcal{L}}{\partial \varphi}=0.
+		\end{align}
+		Analog zum klassischen Fall, kann man die Impulsdichte wie folgt definieren
+		\begin{align}
+			\pi=\frac{\partial\mathcal{L}}{\partial \dot{\varphi}},
+		\end{align}
+		was direkt -- über Legendretransformation -- zur Hamiltondichte führt:
+		\begin{align}
+			\mathcal{H}=\pi\dot{\varphi}-\mathcal{L}
+		\end{align}
+	\section{ADM-Formalismus}
+		Der ADM-Formalismus\cite{2008GReGr..40.1997A, gourgoulhon20123+1} (oft auch 3+1-Formalismus) bezieht sich auf die Formulierung der allgemeinen Relativitätstheorie
+		indem die Raumzeit in dreidimensionale raumartige Hyperebenen unterteilt wird. Anders ausgedrückt, lassen sich die
+		raumartigen Hyperebenen mittels eines Zeitparameters ``durchwandern'':
+		\begin{align}
+			M=\bigcup_{t\in\mathbb{R}} \Sigma(t).
+		\end{align}
+		Eine Bemerkung zu dieser Zerlegung: Um die Existenz zu garantieren, muss vorrausgesetzt werden, dass sich M in jedem
+		Punkt zeitordnen lässt. Etwa zeitzyklische Universen, wie etwas das G\"odeluniversum, können mit diesem Formalismus nicht
+		abgebildet werden.
+		\begin{figure}
+			\centering
+			\include{foliation}
+			\caption{Schematische Darstellung der Zerlegung der Raumzeit in Hyperebenen}
+		\end{figure}
+		
+		Zur Beschreibung der dynamischen Phänomene ist es zuerst notwendig eine günstige Darstellung der Metrik
+		zu finden. Dazu wählt man die Länge des Linienelements $ds$ wie folgt:
+		\begin{align}
+			ds^2=&-{\rm (Zeitartiger\ Abstand)}^2+{\rm (Raumartiger\ Abstand)}^2=\notag\\
+			=&-N^2 dt^2+q_{ij}(dx^i+N^i dt)(dx^j+N^j dt).
+		\end{align}
+		Als Matrix lässt sich die allgemeine Metric $g$ mittels $N,\ N^i$ und $q_{ij}$ schreiben als
+		\begin{align}
+			[g]=\left(
+			\begin{array}{cccc}
+				-N^2+q_{ij}N^i N^j & q_{1j}N^j & q_{2j}N^j & q_{3j}N^j \\
+				q_{1j}N^j & q_{11} & q_{12} & q_{13}\\
+				q_{2j}N^j & q_{21} & q_{22} & q_{23}\\
+				q_{3j}N^j & q_{31} & q_{32} & q_{33}
+			\end{array}\right)
+			\label{equ:gmatrix}
+		\end{align}
+	\subsection{Einstein-Hilbert Wirkung und Hamiltonzwangsbedingung}
+		Wie Hilbert zeigen konnte, lässt sich für die einstein'schen Feldgleichungen eine Lagrangedichte
+		angeben, womit die Wirkung angegeben werden kann:
+		\begin{align}
+			S_{EH}=\frac{1}{16\pi G}\int_M{\rm d}^4x \sqrt{-g}R
+		\end{align}
+		wobei $g= {\rm det}(g)$ und $R$ den Ricci-Skalar bezeichnet.
+		$S_{EH}$ lässt sich nun als Funktional auf Lagrangefunktionen mit den Argumenten $N,N^i$ und $q_{ij}$ umschreiben.
+		
+		Der aufmerksame Beobachter, stellt fest, dass die erste Spalte der Matrixdarstellung von g aus (\ref{equ:gmatrix}) aus 
+		Summen vielfachen der anderen 3 Spalten geschrieben werden kann, nämlich -- $[g_i]$ sei die $i$-te Spalte, wobei von
+		0 begonnen wird zu zählen -- wie folgt:
+		\begin{align}
+			[g_0]=\left(\begin{array}{c}-N^2\\0\\0\\0\end{array}\right)+N^i[g_i].
+		\end{align}
+		Aufgrund elementarer Eigenschaften der Determinante gilt offensichtlich:
+		\begin{align}
+			g={\rm det}(g)={\rm det}\left(
+			\begin{array}{cccc}
+				-N^2 & q_{1j}N^j & q_{2j}N^j & q_{3j}N^j \\
+				0 & q_{11} & q_{12} & q_{13}\\
+				0 & q_{21} & q_{22} & q_{23}\\
+				0 & q_{31} & q_{32} & q_{33}
+			\end{array}\right)=-N^2 {\rm det}(q).
+		\end{align}
+		Als nächsten Schritt gilt es, den Ricci-Skalar in den neuen Argumenten auszudrücken. Aus den Gauss-Codazzi Gleichungen folgt unmittelbar
+		\begin{align*}
+			R=\inHS R+{\rm Tr}(K)^2-K^{ij}K_{ij}.
+		\end{align*}
+		Die Lagrangedichte ist somit $\mathcal{L}=\frac{1}{16\pi G} N\sqrt{h}(\inHS R+{\rm Tr}(K)^2-K^{ij}K_{ij})$. 
+		
+		Daraus ergibt sich mit
+		\begin{align}
+			\pi_{ij}:=\frac{\partial \mathcal{L}}{\partial(\partial_t q_{ij})}.
+		\end{align}
+		Ignorieren der Randterme führt schließlich zum Ausdruck
+		\begin{align}
+			S_{EH}=\int{\rm d}t\int_\Sigma {\rm d}^3x (\pi^{ij}\partial_t q_{ij}-NH_{\perp}-N^i H_i).
+		\end{align}
+		Man erkennt sofort, dass diese Funktion nicht abhängig von $\partial_t N$ und $\partial_t N^i$
+		ist, womit die Ableitungen der der Hamiltonfunktion nach $N$ und $N^i$ konstant entlang der gewählten
+		Zeitentwicklung bleiben. Konkret sind die Größen
+		\begin{align}
+			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{q}\inHS R=0 \label{equ:constraint1}\\
+			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}
+		\end{align}
+		zeitinvarianten darstellen. Erstere wird super-Hamilonzwangsbedingung (im Englischen ,,super-hamiltonian constraint``)
+		und zweitere super-Impulszwangsbedingung (im Englischen ,,super-momentum constraint``) genannt.
+		Mit der üblichen Poissonklammern für $q_{ij}$ und $\pi_{ij}$,
+		\begin{align}
+			\{q_{ij}(\vec{x}),\pi^{kl}(\vec{x}^{\,\prime})\}=\delta^k_{(i}\delta^l_{j)}\delta(\vec{x}-\vec{x}^{\,\prime}),
+		\end{align}
+		kann gezeigt werden \cite{dirac2001lectures,cjm19510012}, dass die Zwangsbedingungen die Kommutatorrelationen
+		\begin{align}
+			&\{H_i(\vec{x}),H_j(\vec{x}^{\,\prime})\}=H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})-H_j(\vec{x})\partial\vec{x}^{\,\prime}_i\delta(\vec{x}-\vec{x}^{\,\prime})\\
+			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=H_\perp(\vec{x})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})\\
+			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=q^{ij}(\vec{x})H_i(\vec{x})\partial^{\,\prime}_j\delta(\vec{x}-\vec{x}^{\,\prime})-q^{ij}(\vec{x}^{\,\prime})H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})
+		\end{align}
+		erfüllen \cite{qg06}.
+	\subsection{Tieferliegende Rolle der Zwangsbedingungen}
+		Es stellt sich heraus, dass die Zwangsbedingungen eine äußerst wichtige Rolle in der
+		Entwicklung eines Systems spielen. Tatsächlich enthalten sie die selbe dynamische
+		Information wie die einsteinschen Feldgleichungen, wie folgender
+		Satz zeigt:
+		\begin{theorem}
+			Eine Lorentzmetrik $q$ erf\"ullt die einsteinschen Feldgleichungen genau dann, wenn die
+			Zwangsbedingungen (\ref{equ:constraint1}-\ref{equ:constraint2}) erf\"ullt sind.
+		\end{theorem}
+		\begin{proof}
+			Siehe \cite{gr-qc/9210011}. % TODO
+		\end{proof}
+	\section{Kanonische Quantisierung}
+	\subsection{Allgemeine Wiederholung}
+		Bei der kanonischen Quantisierung geht man von einer Lagrangedichte für ein 
+		Feld aus, und erhebt die klassischen reelen Funktionen $\phi(x)$ und $\pi(x)$ in
+		den Rang von Operatoren.\\
+		Ohne zu tief in die Materie eintauchen zu wollen, ist es als Beispiel aber nichtsdestoweniger
+		hilfreich sich den Fall eines freien skalaren Feldes zu Gemüte zu führen.
+		
+		Die Langrangedichte für ein solches Feld lautet
+		\begin{align}
+			\mathcal{L}=\frac{1}{2}(\partial_\mu\varphi \partial^\mu\varphi-m^2\varphi^2)
+		\end{align}
+		
+		Um mit den Feldoperatoren in einem vernünftigen Rahmen rechnen zu können
+		ist es notwendig zu wissen wie, verschiedene Operatoren mitteinander in 
+		Beziehung stehen. Das gelingt indem man Kommutatorrelationen angiebt.
+		Diese verallgemeinern sich auf natürliche (kanonische) Weise zu
+		\begin{align}
+			&[\varphi(\vec{x}), \varphi(\vec{y})]=0=[\pi(\vec{x}), \pi(\vec{y})] \\
+			&[\varphi(\vec{x}), \pi(\vec{y})]=i\delta(\vec{x}-\vec{y}).
+		\end{align}
+		Eine Bemerkung zu Fällen, in denen die Ableitung der Felder auftritt:
+		Hier ist es natürlich notwendig das Konzept der Ableitung auch entsprechend
+		zu verallgemeinern. Das wird mithilfe der funktionalen Ableitung erreicht
+		(siehe Fr\'echet Ableitung bzw. G\^ateaux Ableitung).
+	\subsection{Kanonische Quantisierung der Gravitation}
+		tba. %% TODO %%
+	\section{Problem der Zeit in der Quantengravitation}
+		Um nicht zu weit Abzuschweifen, muss in diesem Kapitel auf tieferliegende
+		mathematische Begründungen leider verzichtet werden. Für weiterführende Referenzen
+		siehe \cite{qg06,gr-qc/9210011}.
+		
+		Wie bereits in vorherigem Abschnitt beobachtet, kommen in der Wheeler-DeWitt Gleichung keine
+		expliziten Zeitabhängigkeiten vor. Natürlich ist das nicht überraschend, da bereits in der klassischen Version
+		offensichtlich keine Zeit in den Zwangsbedingungen auftritt -- es wurden ja nur Funktionen
+		mit Operatoren ersetzt -- führt aber dennoch zur konzeptuell unterschiedlichen Zeitinterpretationen, nämlich,
+		dass man der Zeit entweder vor oder nach der Quantisierung Bedeutung schenkt. Diese Entscheidungsfreiheit charakterisiert
+		die ersten beiden Auslegungen. In der dritte der gängigen Anschauungen auf das Problem der Zeit 
+		wird die Zeit von ihrer bisherigen Sonderstellung enttront und es wird ihr nur noch die Bedeutung
+		einer phänomenologischen Erscheinung zugeteilt. Dies manifestiert sich in ansich zeitlosen Theorien.
+		
+		In den folgenden Unterabschnitten werden Beispiele für diese Interpretationen genannt
+		und die darin auftretenden Vor- und Nachteile kurz besprochen.
+		\subsection{Identifikation der Zeit vor der Quantisierung} % matter clocks and reference fluids
+			Die erste Möglichkeit, das Problem der Zeit zu behandeln ist die Identifikation der
+			Zeit als Funktional von $q_{ij}$ und $\pi_{ij}$ vor der Quantisierung. Eine der Realisierungen
+			ist beispielsweise die Implementierung des Zeitbegriffs via ,,Matter Clocks`` und ,,Reference Fluids`` \cite{PhysRevD.43.419,gr-qc/9210011}. %% TODO %%
+		\subsection{Identifikation der Zeit nach der Quantisierung} % cannonical quantum gravity & semiclassical approaches (WKB)
+			Alternativ lässt sich die Zeit auch nach der Quantisierung ,,rekonstruieren``. Prominente 
+			Vertreter dieser Herangehensweise können für einfache Modelle zu Formen der Wheeler-DeWitt Gleichung
+			führen, welche stark an die Schrödingergleichung erinnern.
+			
+			Ein solches Bespiel \cite{PhysRevD.28.2960} lässt sich mit einem Minisuperspace, was ein stark vereinfachtes System 
+			beschreibt, verdeutlichen. In diesem Modell wird ein expandierendes Universum mit Topologie
+			$\mathbb{R}\times \mathcal{S}^3$ beschrieben, wobei $\mathcal{S}^3$ eine 3-Sphäre bezeichnet (Eine Kugel im $\mathbb{R}^4$ mit dreidimensionaler Oberfläche).
+			\begin{figure}
+				\centering
+				\include{RS3}
+				\caption{Schematische Darstellung eines $\mathbb{R}\times\mathcal{S}^3$ Modells. Die Hohlkugeln ($\mathcal{S}^3$) symbolisieren das Modelluniversum zu verschiedenen Zeitpunkten.}
+			\end{figure}
+			Der Kugelradius soll eine Funktion von $t$ alleine sein. Wir betrachten also ein System mit der Metrik
+			\begin{align}
+				{\rm d}s^2=-N(t)^2 {\rm d}t^2+a(t)^2{\rm d}\sigma_3^2.
+			\end{align}
+			${\rm d}\sigma_3^2$ bezeichnet die Metrik der Einheitssphäre. Als Blockmatrix in der Standardbasis angeschrieben hat diese Metrik
+			die Form 
+			\begin{align}
+				g=\left(
+					\begin{array}{cc} 
+						N(t)^2 & \vec{0}^T\\ 
+						\vec{0} & a(t)^2 \gamma
+					\end{array}\right),
+			\end{align}
+			wobei $\gamma$ die Metrik in der Einheitssphäre bezeichnet. Die im ADM-Formalismus besprochene Metrik der Hyperebene ist insofern
+			\begin{align}
+				h_{ij}=a(t)^2\gamma_{ij},\quad h^{ij}=\frac{1}{a(t)^2}\gamma^{ij},\quad \sqrt{h}=a^3\sqrt{\gamma}.
+			\end{align}
+			Aus dem Normalenvektor $n=(1/N,\vec{0}^T)^T$ folgt $n_0=(n^0)^{-1}=N$ und somit ergibt sich unmittelbar für die extrinsische Krümmung nach $\label{def:extrcurv}$ und
+			mit den Christoffelsymbolen aus \label{def:christ}:
+			\begin{align}
+				K_{ij}=-\nabla_i n_j=-\partial_i n_j+\Gamma^\mu_{ji}n_\mu=\frac{1}{N}\Gamma^0_{ji}=-\frac{1}{2N}\partial_t h_{ij}=-\frac{\dot{a}a}{N}\gamma_{ij}.
+			\end{align}
+			Dabei wurde verwendet, dass $g^{00}=N^{-2}$, $g_{0i}=0$ und $g_{ij}=h_{ij}$. Weiters kann $K_{ij}K^{ij}$ und ${\rm Tr}(K)$ berechnet werden:
+			\begin{align}
+				K_{ij}K^{ij}=&h^{ik}h^{jl}K_{kl}K_{ij}=\frac{1}{a(t)^4}\gamma^{ik}\gamma^{jl}\frac{a(t)^2\dot{a}(t)^2}{N(t)^2}\gamma_{kl}\gamma_{ij}=3\frac{\dot{a}(t)^2}{a(t)^2 N(t)^2}\\
+				{\rm Tr}(K)=&h^{ij}K_{ij}=-\frac{\dot{a(t)}a(t)}{ N(t)}\frac{1}{a(t)}\gamma^{ij}\gamma_{ij}=3\frac{\dot{a}(t)}{a(t) N(t)}.
+			\end{align}
+			Für den Krümmungsskalar der 3-Sphäre mit Radius $a(t)$ gilt außerdem $\inHS R=6 a(t)^{-2}$.
+			Wir betrachten desweiteren ein skalares massives Feld $\varphi(t)$, gekoppelt an das Gravitationsfeld,
+			welches homogen auf der Sphäre definiert ist. Das Potental ist dann im einfachsten Fall
+			\begin{align}
+				V(\varphi)=\frac{m^2 \varphi^2}{2}.
+			\end{align}
+			Insofern folgt für die Wirkung
+			\begin{align}
+				S_{EH}=&\frac{1}{16\pi G}\int{\rm d}t\int_{\mathcal{S}^3}{\rm d}^3 x\, N\sqrt{h}\left(\inHS R-2\Lambda+{\rm Tr}(K)^2-K^{ij}K_{ij}+\right.\notag\\
+						&\qquad\qquad\qquad\quad\qquad\qquad\left.+\frac{1}{2}g^{\mu\nu}\partial_\mu \varphi\partial_\nu \varphi-V(\phi)\right)=\notag\\
+					&\frac{1}{16\pi G}\int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda+6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right) \VSthree.
+			\end{align}
+			Die Zeitableitungen wurden der Übersichtlichkeit halber weggelassen. Da außerdem die einzige Größe, die von $\vec{x}$ abbhängt $\sqrt{\gamma}$ ist
+			und diese desweiteren unabhängig von $N,\ a$ und $\dot{a}$ ist, verhällt sie sich in weiterer betrachtung als Konstante (Oberfläche der Einheitssphäre) und
+			wird mit $\VSthree$ notiert.
+		\subsection{Zeitfreie Theorien}
+			Der Vollständigkeit halber ist es an dieser Stelle noch notwendig zu Erwähnen,
+			dass ein vollständig zeitfreies Modell ebenfalls ein valider Kandidat für eine Theorie der Quantengravitation darstellt. In ihm ist das Universum
+			nicht an eine Zeit gebunden, sie präsentiert sich für unsere Auffassung nur als phänomenologisches 
+			Konzept. Das Problem gestalltet sich hier allerdings auch nit weniger schwierig,
+			da das Konstruieren eines Zeitoperators und das Angeben eines geeigeneten Hilberraumes nicht
+			ohne weiters durchgeführt werden kann \cite{qg06}.
+	\bibliography{handout.bib}{}
+	\bibliographystyle{plain}
+\end{document}
