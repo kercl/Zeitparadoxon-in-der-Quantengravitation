@@ -37,7 +37,7 @@
 \newcommand{\inHS}{{}^{(3)}\!}
 \newcommand{\VSthree}{\mu(\mathcal{S}^3)}
 
-\title{Zeitparadoxon in der Quantengravitation}
+\title{Das Problem der Zeit in der Quantengravitation}
 \subtitle{Im Rahmen des Seminars ,,Ausgewählte Probleme der Quantentheorie``}
 \author{Clemens Kerschbaumer}
 \date{\today}
@@ -169,8 +169,8 @@
 		
 		Die folgenden Abschnitte werden zur Ableitung der allgemeinen Form der Wheeler-DeWitt Gleichung benötigt. Für den im Vortrag
 		besprochenen Minisuperspace sind diese Überlegungen nicht unbedingt notwendig. Es wird lediglich die Definition der extrinsischen Krümmung $K$ benötigt.
-		\begin{paragraph}{Extrinsische Krümmung:}
-		Auf Hyperebenen lässt sich die Abbildung (Weingartenabbildung)
+		\begin{paragraph}{Extrinsische Krümmung:} Neben der intrinsischen Krümmung existiert noch ein weiterer Begriff, die extrinsische Krümmung. Man betrachte
+		dazu zuerst die auf Hyperebenen definierbare Abbildung (Weingartenabbildung):
 		\begin{align*}
 			L:\ T_p(\Sigma)&\rightarrow T_p(\Sigma) \\
 				v&\mapsto \nabla_v n
@@ -309,7 +309,7 @@
 			\end{array}\right)
 			\label{equ:gmatrix}
 		\end{align}
-	\subsection{Einstein-Hilbert Wirkung und Hamiltonzwangsbedingung}
+	\subsection{Einstein-Hilbert Wirkung und super-Hamilton constraints}
 		Wie Hilbert zeigen konnte, lässt sich für die einstein'schen Feldgleichungen eine Lagrangedichte
 		angeben, womit die Wirkung angegeben werden kann:
 		\begin{align}
@@ -355,19 +355,19 @@
 			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{q}\inHS R=0 \label{equ:constraint1}\\
 			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}
 		\end{align}
-		zeitinvarianten darstellen. Erstere wird super-Hamilonzwangsbedingung (im Englischen ,,super-hamiltonian constraint``)
-		und zweitere super-Impulszwangsbedingung (im Englischen ,,super-momentum constraint``) genannt.
+		zeitinvariant. Erstere wird super-hamiltonian constraint, mit der super-DeWitt Metrik $G_{ijkl}=\frac{1}{2\sqrt{q}}(q_{ik}q_{jl}+q_{jk}q_{il}-q_{ij}q_{kl})$,
+		und zweitere super-momentum constraint genannt.
 		Mit der üblichen Poissonklammern für $q_{ij}$ und $\pi_{ij}$,
 		\begin{align}
 			\{q_{ij}(\vec{x}),\pi^{kl}(\vec{x}^{\,\prime})\}=\delta^k_{(i}\delta^l_{j)}\delta(\vec{x}-\vec{x}^{\,\prime}),
 		\end{align}
-		kann gezeigt werden \cite{dirac2001lectures,cjm19510012}, dass die Zwangsbedingungen die Kommutatorrelationen
+		kann gezeigt werden \cite{dirac2001lectures,cjm19510012}, dass die Zwangsbedingungen die Kommutatorrelationen \cite{qg06}
 		\begin{align}
 			&\{H_i(\vec{x}),H_j(\vec{x}^{\,\prime})\}=H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})-H_j(\vec{x})\partial\vec{x}^{\,\prime}_i\delta(\vec{x}-\vec{x}^{\,\prime})\\
 			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=H_\perp(\vec{x})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})\\
 			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=q^{ij}(\vec{x})H_i(\vec{x})\partial^{\,\prime}_j\delta(\vec{x}-\vec{x}^{\,\prime})-q^{ij}(\vec{x}^{\,\prime})H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})
 		\end{align}
-		erfüllen \cite{qg06}.
+		erfüllen.
 	\subsection{Tieferliegende Rolle der Zwangsbedingungen}
 		Es stellt sich heraus, dass die Zwangsbedingungen eine äußerst wichtige Rolle in der
 		Entwicklung eines Systems spielen. Tatsächlich enthalten sie die selbe dynamische
@@ -376,6 +376,7 @@
 		\begin{theorem}
 			Eine Lorentzmetrik $q$ erf\"ullt die einsteinschen Feldgleichungen genau dann, wenn die
 			Zwangsbedingungen (\ref{equ:constraint1}-\ref{equ:constraint2}) erf\"ullt sind.
+			\label{thm:full}
 		\end{theorem}
 		\begin{proof}
 			Siehe \cite{gr-qc/9210011}. % TODO
@@ -386,7 +387,7 @@
 		Feld aus, und erhebt die klassischen reelen Funktionen $\phi(x)$ und $\pi(x)$ in
 		den Rang von Operatoren.\\
 		Ohne zu tief in die Materie eintauchen zu wollen, ist es als Beispiel aber nichtsdestoweniger
-		hilfreich sich den Fall eines freien skalaren Feldes zu Gemüte zu führen.
+		hilfreich sich den Fall eines freien massereichen skalaren Feldes zu Gemüte zu führen.
 		
 		Die Langrangedichte für ein solches Feld lautet
 		\begin{align}
@@ -398,15 +399,44 @@
 		Beziehung stehen. Das gelingt indem man Kommutatorrelationen angiebt.
 		Diese verallgemeinern sich auf natürliche (kanonische) Weise zu
 		\begin{align}
-			&[\varphi(\vec{x}), \varphi(\vec{y})]=0=[\pi(\vec{x}), \pi(\vec{y})] \\
-			&[\varphi(\vec{x}), \pi(\vec{y})]=i\delta(\vec{x}-\vec{y}).
+			&[\hat{\varphi}(\vec{x}), \hat{\varphi}(\vec{y})]=0=[\hat{\pi}(\vec{x}), \hat{\pi}(\vec{y})] \\
+			&[\hat{\varphi}(\vec{x}), \hat{\pi}(\vec{y})]=i\delta(\vec{x}-\vec{y}).
 		\end{align}
 		Eine Bemerkung zu Fällen, in denen die Ableitung der Felder auftritt:
 		Hier ist es natürlich notwendig das Konzept der Ableitung auch entsprechend
 		zu verallgemeinern. Das wird mithilfe der funktionalen Ableitung erreicht
 		(siehe Fr\'echet Ableitung bzw. G\^ateaux Ableitung).
-	\subsection{Kanonische Quantisierung der Gravitation}
-		tba. %% TODO %%
+		Beispielsweise wirkt der Impulsoperator auf Wellenfunktionen in Ortsdarstellung in quantisierten Feldtheorien folgendermaßen:
+		\begin{align*}
+			\hat{\pi}\Psi[\varphi]=-i\frac{\delta\Psi[\varphi]}{\delta \phi}.
+		\end{align*}
+		Falls keine Felder beschrieben werden, reduziert sich diese Gleichung auf die altbekannte
+		\begin{align*}
+			\vec{p}\, \Psi(\vec{x},t)=-i\nabla \Psi(\vec{x},t),
+		\end{align*}
+		wobei $\nabla$ hier natürlich den üblichen Nablaoperator und nicht eine kovariante Ableitung darstellt.
+	\subsection{Kanonische Quantisierung des Hamiltonformalismus der Gravitation}
+		Analog zu dem vorherigen Abschnitt werden nun die Feldgrößen zu Operatoren.
+		Die Poissonklammerausdrücke wird weiters durch den Kommutatoren ersetzt.
+		Folgt man den Spuren Dirac's bis hin zu seiner Quantisierung von Zwangsbedingungen \cite{dirac2001lectures}
+		erhällt man die Funktionaldiffernetialgleichungen, welche zusammen mit Satz \ref{thm:full} die Vollständige
+		Information über das Verhalten der Raumzeit enthalten. Die quantisierten Constraints wirken auf Wellenfunktionen folgendermaßen:
+		\begin{align}
+			\hat{H}_\perp\Psi[q]&=0\\
+			\hat{H}_i\Psi[q]&=0.
+		\end{align}
+		Ausgeschrieben erhällt man beispielsweise für die Gleichung die sich aus dem Hamilton constraint ergibt:
+		\begin{align}
+			-16\pi G G_{ijkl}\frac{\delta^2\Psi[q]}{\delta q_{ij}\delta q_{kl}}-\frac{1}{16\pi G}\inHS R\Psi[q]=0.
+		\end{align}
+		Dieses Result ist als Wheeler-DeWitt Gleichung bekannt und steht hier in allgemeiner Form. Im nächsten Kapitel
+		wird diese Gleichung für ein stark vereinfachtes System betrachtet in dem sie sich auf eine gewöhnliche 
+		Differentialgleichung reduziert.
+		
+		Man erkennt außerdem, dass in dieser Gleichung die Zeit nicht explizit vorkommen. Dies ist ein erstes Indiz dafür, dass
+		die Zeit in der Quantengravitation eine andere Rolle einnimmt, als in den bisher entwickelten Quantenfeldtheorien.
+		Diese Rolle ist noch nicht eruiert und aktuelles Forschungsgebiet. Es existieren hierzu jedoch diverse
+		Interpretationsansätze, die das Problem unterschiedlich beleuchten.
 	\section{Problem der Zeit in der Quantengravitation}
 		Um nicht zu weit Abzuschweifen, muss in diesem Kapitel auf tieferliegende
 		mathematische Begründungen leider verzichtet werden. Für weiterführende Referenzen
@@ -477,11 +507,62 @@
 			\begin{align}
 				S_{EH}=&\frac{1}{16\pi G}\int{\rm d}t\int_{\mathcal{S}^3}{\rm d}^3 x\, N\sqrt{h}\left(\inHS R-2\Lambda+{\rm Tr}(K)^2-K^{ij}K_{ij}+\right.\notag\\
 						&\qquad\qquad\qquad\quad\qquad\qquad\left.+\frac{1}{2}g^{\mu\nu}\partial_\mu \varphi\partial_\nu \varphi-V(\phi)\right)=\notag\\
-					&\frac{1}{16\pi G}\int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda+6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right) \VSthree.
+					&\frac{1}{16\pi G}\int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda-6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right) \VSthree\\
+					\Rightarrow S_{EH} \propto& \int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda-6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right).
 			\end{align}
 			Die Zeitableitungen wurden der Übersichtlichkeit halber weggelassen. Da außerdem die einzige Größe, die von $\vec{x}$ abbhängt $\sqrt{\gamma}$ ist
 			und diese desweiteren unabhängig von $N,\ a$ und $\dot{a}$ ist, verhällt sie sich in weiterer betrachtung als Konstante (Oberfläche der Einheitssphäre) und
-			wird mit $\VSthree$ notiert.
+			wird mit $\VSthree$ notiert. $\Lambda$ ist die kosmologische Konstante, die in den vorigen Kapiteln immer gleich null gestzt wurde.
+			
+			Der nächste Schritt ist es, sich die Hamiltonfunktion zu berechnen. Für die konjugierten Impuls ergibt sich sofort
+			\begin{align}
+				p_a=\frac{\partial L}{\partial \dot{a}}=-12\frac{a\dot{a}}{N},\quad p_\phi=\frac{\partial L}{\partial \dot{\phi}}=\frac{a^3\dot{\phi}}{N}.
+			\end{align}
+			Daher ist die Hamiltonfunktion von $L$:
+			\begin{align*}
+				H=&p_a \dot{a}+p_\phi \dot{\phi}-L=\\
+				=&N\left(\frac{p_a^2}{24a}-\frac{p_\phi}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3\right)\VSthree=N H_\perp.
+			\end{align*}
+			Aus den Betrachtungen im Kapitel über den ADM Formalismus erwarten wir, dass
+			\begin{align*}
+				H_\perp=\frac{p_a^2}{24a}-\frac{p_\phi^2}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3
+			\end{align*}
+			verschwindet. Tatsächlich lässt sich dies auch leicht mithilfe der Euler-Langrangegleichung zeigen. Bildet man nämlich
+			\begin{align*}
+				\frac{{\rm d}}{{\rm d}t}\frac{\partial L}{\partial \dot{N}}-\frac{\partial L}{\partial N}=0
+			\end{align*}
+			ergibt sich, wobei die Ableitung $\frac{\partial L}{\partial \dot{N}}$ offensichtlich verschwindet:
+			\begin{align*}
+				0=\frac{{\rm d}L}{{\rm d } N}&=6a-2a^3 \Lambda+6\frac{a\dot{a}^2}{N^2}-\frac{a^3\dot{\phi}^2}{2N^2}-V(\phi)a^3=\\
+				&=\frac{p_a^2}{24a}-\frac{p_\phi^2}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3=H_\perp.
+			\end{align*}
+			Desweiteren lässt sich an diesem Modell auch Satz \ref{thm:full} verdeutlichen. Bildet man die verbleibenden Bewegungsgleichungen
+			mit der Eichung $N=1$ erhällt man unmittelbar:
+			\begin{align}
+				\dot{a}^2+12+a^2(-\dot{\phi}^2+2V(\phi)+4\Lambda)&=0\\
+				\ddot{\phi}+3\frac{\dot{a}}{a}\dot{\phi}+V^\prime(\phi)&=0\\
+				\ddot{a}+\frac{1}{2}\left(\frac{\dot{a}}{a}-\frac{1}{a}+a\Lambda-\frac{a\dot{\phi}^2}{4}+\frac{V(\phi)a}{2}\right)&=0
+			\end{align}
+			Differenziert man die erste Gleichung und setz zweite ein, ist das Resultat die dritte Gleichung.
+			
+			Der super-Hamilton constraint für das gewählte Minisuperspace Modell ist somit
+			\begin{align}
+				H_\perp=p_a^2-12p_\phi^2-a^2(144+48 a^2 \Lambda+24V(\phi)a^3)=0,
+			\end{align}
+			was nach Reskalierung von $N$, $\Lambda$ und $V(\phi)$ equivalent zu der Form
+			\begin{align}
+				H_\perp=p_a^2-p_\phi^2-a^2(1+a^2 (\Lambda+V(\phi)))=0
+			\end{align}
+			ist. Die Wheeler-DeWitt Gleichung für ein solches System ist -- nach Ersetzung von $p_a=-i\veps\frac{\partial}{\partial a}$ und $p_\phi=-i\veps\frac{\partial}{\partial \phi}$; die Bedeutung von $\veps$ wird noch klar werden -- eine
+			partielle Differentialgleichung zweiter Ordnung:
+			\begin{align}
+				\left(-\veps^2\frac{\partial^2}{\partial a^2}+\veps^2\frac{\partial^2}{\partial \phi^2}-a^2(1+a^2 (\Lambda+V(\phi))\right)\Psi(a,\phi)=0,
+			\end{align}
+			beziehungsweise ohne skalares Feld eine Gleichung, ähnlich der stationären Schrödingergleichung:
+			\begin{align}
+				\left(-\veps^2\frac{{\rm d}^2}{{\rm d}a^2}-a^2(1+a^2\Lambda)\right)\Psi(a)=0.
+			\end{align}
+			Es stellt sich nun die Frage ob $a$ als Zeit interpretiert werden kann. 
 		\subsection{Zeitfreie Theorien}
 			Der Vollständigkeit halber ist es an dieser Stelle noch notwendig zu Erwähnen,
 			dass ein vollständig zeitfreies Modell ebenfalls ein valider Kandidat für eine Theorie der Quantengravitation darstellt. In ihm ist das Universum
