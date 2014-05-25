@@ -1,0 +1,337 @@
+\documentclass[mathserif]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,german]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{bbold}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{breqn}
+\usepackage{floatrow}
+\usetikzlibrary{shapes,shadows,arrows,decorations.markings}
+\usetikzlibrary{decorations.pathreplacing,calc}
+\usetheme{Szeged}
+\usecolortheme{seagull}
+
+\newcommand{\inftyint}{\int_{-\infty}^{\infty}}
+\newcommand{\intR}{\int_{\mathbb{R}}}
+\newcommand{\intRRR}{\int_{\mathbb{R}^3}}
+\newcommand{\opd}[2][\vphantom{1}]{\!\operatorname{d}^{#1}\! #2\ }
+\newcommand{\opdpath}{\opd{\mu(p)}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\residue}{\operatorname{Res}}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vp}{\vec{p}}
+\newcommand{\vacuumt}{\langle 0 |}
+\newcommand{\vacuum}{| 0 \rangle}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\inHS}{{}^{(3)}\!}
+\newcommand{\VSthree}{\mu(\mathcal{S}^3)}
+
+\title{\textbf{Das Problem der Zeit in der Quantengravitation}}
+\author{\small {Teil 1: Vorbereitungen und allgemeine Betrachtungen}}
+\institute{}
+\date{\today}
+
+\theoremstyle{definition}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\begin{frame}{Überblick}
+		\tableofcontents
+	\end{frame}
+
+\section{Mathematische Konzepte der Differentialgeometrie}
+\begin{frame}
+\begin{center}
+	\large \textbf{Mathematische Konzepte der Differentialgeometrie}
+\end{center}
+\end{frame}
+\subsection{Mannigfaltigkeiten}
+	\begin{frame}{Mannigfaltigkeit}
+		Eine n-dimensionale Mannigfaltigkeit ist Menge $M$, die lokal die selbe Struktur wie $\mathbb{R}^n$.\\
+		
+			Beispiel:
+			
+		\pause
+		\begin{minipage}{0.45\linewidth}
+			
+			\centering
+			\includegraphics[scale=0.3]{sphere.pdf}
+		\end{minipage}
+		\hfill
+		\pause
+		\begin{minipage}{0.45\linewidth}
+			
+			\centering
+			\includegraphics[scale=0.3]{bottle.pdf}
+		\end{minipage}\\
+		\begin{itemize}
+			\item $M$ Teilmenge eines h\"oherdimensionalen Raumes mit Dimension $m$:\\
+			$M$ is eingebettet.\\
+			\pause
+			\item Dimension von $M$ gleich $m-1$:\\
+			$M$ ist eine Hyperebene
+		\end{itemize}
+	\end{frame}
+\subsection{Metrik}
+	\begin{frame}{Metrik}
+		allgemeine Formulierung für einen Distanzbegriff\\
+		Entfernung zwischen zwei Punkten hängt von der ,,Form`` ab.\\
+		\pause
+		$\rightarrow$ Charakterisierung mittels Metriktensors $g$:
+		\begin{align}
+			{\rm d}s^2=g_{\mu\nu}{\rm d}x^\mu{\rm d}x^\nu
+		\end{align}\\
+		Länge einer Kurve:
+		\begin{align}
+			\int {\rm d}s=\int_{t_1}^{t_2}{\rm d}t\, \sqrt{g_{\mu\nu}{\rm d}x(t)^\mu{\rm d}x(t)^\nu}
+		\end{align}
+	\end{frame}
+	
+	\begin{frame}
+		Beispiel: Zylinder\\
+		\begin{center}
+			\include{zylinder}
+		\end{center}
+		Metriktensor f\"ur diese Beispiel: $g=\left(\begin{array}{cc} r & 0 \\ 0 & 1 \end{array}\right)$
+	\end{frame}
+\subsection{Kovariante Ableitung}
+	\begin{frame}{Kovariante Ableitung}
+		Betrachten Ableitungsbegriff für eingebettete Ebenen in $\mathbb{R}^3$:
+		\begin{itemize}
+		\item Benötigen Differentiatonsbegriff, der die Deformiertheit der Mannigfaltigkeit berücksichtigt.\\
+		\pause
+		\item Für Skalarfelder ist die klassische Definition ausreichend.\\
+		Für Vektoren und Tensore aber nicht!$\rightarrow$ Wollen, dass Ableitung ,,nur in der Ebene wirkt``\\
+		\pause
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		Tangentialraum ($T_p(M)$): Vektorraum an jede Punkt der Mannigfaltigkeit
+		\begin{itemize}
+			\item Für eindimensionale Kurve: Alle vielfache des Tangentenvektors
+			\item Für Fläche: Linearkombinationen von 2 Tangentenvektoren
+		\end{itemize}
+		\pause
+		Wir wollen mit der Ableitung sozusagen nicht aus dem Tangentialraum ausbrechen:
+		\begin{center}
+		$\rightarrow$ Wähle Projektion der normalen Ableitung
+		\end{center}
+	\end{frame}
+	\begin{frame}
+		Situation für zweidimensionale Riemannsche Mannigfaltigkeiten:
+		\begin{itemize}
+			\item Ableiten eines Vektors $v=a \vx_u+b\vx_v$ entlang Kurve
+			\pause
+			\item Identifzieren der Vektoren $\vx_{uu},\ \vx_{uv}$ und $\vx_{vv}$:
+				\begin{align*}
+					\vec{x}_{uu}&=\Gamma^1_{11} \vx_u+\Gamma^2_{11}\vx_v+L_1 n\\
+					\vx_{uv}&=\Gamma^1_{12}\vx_u+\Gamma^2_{12}\vx_v +L_2 n\\
+					\vx_{vv}&=\Gamma^1_{22}\vx_u+\Gamma^2_{22}\vx_v+L_3 n
+				\end{align*}
+			\pause
+			\item In Ableitung einsetzen
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		Ignorieren der Normalkomponenten:
+		\begin{align*}
+			\frac{{\rm D} v(t)}{{\rm d}t}=\nabla_{v(t)} v(t) :=& (\dot{a} + \Gamma^1_{11}a^2+\Gamma^1_{12}ab+\Gamma^1_{22}b^2)\vx_u+\notag\\
+			+&(\dot{b} + \Gamma^2_{11}a^2+\Gamma^2_{12}ab+\Gamma^2_{22}b^2)\vx_v.
+		\end{align*}
+		\pause
+		oder in kompakter Notation mit Koorinatenachsen als Ableitungsrichtungen:
+		\begin{align*}
+			\nabla_\mu v^\nu=\partial_\mu v^\nu +\Gamma^\nu_{\rho\mu}v^\rho.
+		\end{align*}
+		\pause
+		Christoffelsymbole: $\Gamma^\mu_{\nu\rho}=\frac{1}{2}g^{\mu\sigma}(\partial_\rho g_{\sigma \nu}+\partial_\nu g_{\sigma \rho}-\partial_\sigma g_{\nu\rho})$
+	\end{frame}
+\subsection{Krümmung}
+	\begin{frame}{Krümmung}
+		Zwei zentrale Begriffe:
+		\begin{itemize}
+			\item \textbf{Intrinsische Krümmung}:\\
+				Unabhängig vom Einbettungsraum -- Zylinder hat die selbe intrinsische Krümmung wie eine Fläche
+			\pause
+			\item \textbf{Extrinisische Krümmung}:\\
+				Abhängig von der Wahl der Einbettung -- Zylinder ist gekrümmmte Fläche im $\mathbb{R}^3$, aber einfache Fläche nicht
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Krümmung}
+		Zwei zentrale Begriffe:
+		\begin{itemize}
+			\item \textbf{Intrinsische Krümmung}:\\
+				Angegeben über $R^\rho{}_{\sigma\mu\nu}\ \rightarrow$ Riemannscher Krümmungstensor
+			\item \textbf{Extrinisische Krümmung}:\\
+				intuitiv: ,,Wie stark ändert sich ein Normalenvektor $n$ in einer Umgebung um einen Punkt``
+			\begin{center}
+				$n$ existiert \textit{nur}, wenn die Manigfaltigkeit eingebettet ist!
+			\end{center}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\textbf{Intrinsische Krümmung}:\\
+				Lässt sich über die (intrinsischen) Christoffelsymbole angeben:
+				\begin{align}
+					R^\rho{}_{\sigma\mu\nu} = \partial_\mu\Gamma^\rho{}_{\nu\sigma}
+						- \partial_\nu\Gamma^\rho{}_{\mu\sigma}
+						+ \Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+						- \Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}
+				\end{align}
+				Keine Beteiligung von einbettungsbezogenen Größen (wie etwa Normalvektoren!)
+	\end{frame}
+	\begin{frame}
+		\textbf{Extrinisische Krümmung}:\\
+				Definiert auf Hyperebenen mit Normalvektor $n$:
+				\begin{definition} Extrinisische Krümmung K:
+					\begin{align}
+						K:\ T_p(\Sigma)\times T_p(\Sigma)&\rightarrow \mathbb{R} \label{def:extrcurv} \\
+							(v,u)&\mapsto -\langle v,L(u)\rangle.\notag
+					\end{align}
+				\end{definition}
+				Wobei
+				\begin{align*}
+					L:\ T_p(\Sigma)&\rightarrow T_p(\Sigma) \\
+						v&\mapsto \nabla_v n
+				\end{align*}
+				die Weingartenabbildung bezeichnet.
+	\end{frame}
+	\begin{frame}
+		\textbf{Extrinisische Krümmung}:\\
+				\begin{center}
+					\include{extrcurv}
+				\end{center}
+	\end{frame}
+	\begin{frame}
+		Zusammenhang zwischen Größen der Hyperebene und des Umgebungsraumes:
+		\begin{center}
+			\textbf{Gauss-Codazzi Gleichung:}
+		\end{center}
+		\begin{align}
+			{P^\mu}_\alpha{P^\nu}_\beta{P^\gamma}_\rho{P^\sigma}_\delta {R^\rho}_{\sigma\mu\nu}={\inHS R^\gamma}_{\delta\alpha\beta}+{K^\gamma}_\alpha K_{\delta\beta}-{K^\gamma}_\beta K_{\alpha\delta}
+		\end{align}
+		Wobei $P$ der Projektionsoperator auf den die Hyperebene bezeichnet.
+	\end{frame}
+\section{Feldtheorien und ADM-Formalismus}
+\begin{frame}
+\begin{center}
+	\large \textbf{Feldtheorien und ADM-Formalismus}
+\end{center}
+\end{frame}
+\subsection{Rückblick: klassische Feldtheorien}
+	\begin{frame}{Rückblick: klassische Feldtheorien}
+		\textbf{klassischer Mechanik}: generalisierte Koordinaten $q_i(t)$ beschreiben System\\
+		\textbf{Feldtheorien}: Anstatt den diskreten Indizes $\rightarrow$ kontinuierliche Größen $\varphi(\vec{x},t)$\\
+		\pause
+		Wirkung:
+		\begin{align}
+			S=\int_{t_1}^{t_2}{\rm d}t\int_{\mathbb{R}^3}{\rm d}^3 x\, \mathcal{L}
+		\end{align}
+		$\mathcal{L}$...Lagrangedichte
+	\end{frame}
+	\begin{frame}
+		Aus dem Variationsprinzip ergibt sich \textbf{Euler-Lagrangefunktion} für Felder:
+		\begin{align}
+			\partial_\mu \frac{\partial \mathcal{L}}{\partial (\partial_\mu \varphi)}-\frac{\partial \mathcal{L}}{\partial \varphi}=0.
+		\end{align}
+		\pause
+		\textbf{Hamiltondichte:}
+		\begin{align}
+			\mathcal{H}=\pi\dot{\varphi}-\mathcal{L},
+		\end{align}
+		mit generalisiertem Impuls: $\pi=\frac{\partial\mathcal{L}}{\partial \dot{\varphi}}$
+	\end{frame}
+\subsection{ADM-Formalismus}
+	\begin{frame}{ADM-Formalismus}
+		Zerteile Raumzeit in Schichten aus spacelike-Hyperebenen
+		\begin{center}
+			\include{foliationSmall}
+		\end{center}
+		\begin{align}
+			M=\bigcup_{t\in\mathbb{R}}\Sigma(t)
+		\end{align}
+		\pause
+		Ist nicht immer möglich: Hyperebenen müssen orientierbar sein und es dürfen keine Zeitzyklen auftreten
+	\end{frame}
+	\begin{frame}
+		Metrik im ADM-Formalismus:
+		\begin{align}
+			{\rm d}s^2=&-{\rm (Zeitartiger\ Abstand)}^2+{\rm (Raumartiger\ Abstand)}^2=\notag\\
+			=&-N^2 {\rm d}t^2+q_{ij}({\rm d}x^i+N^i {\rm d}t)({\rm d}x^j+N^j {\rm d}t).
+		\end{align}
+	\end{frame}
+	\begin{frame}
+		Einstein-Hilbert Wirkung:
+		\begin{align}
+			S_{EH}=\frac{1}{16\pi G}\int_M{\rm d}^4x \sqrt{-g}R
+		\end{align}
+		\pause
+		Zusammen mit Gauss-Codazzi Gleichungen und der Metrik ergibt sich für den ADM-Formalismus:
+		\begin{align}
+			S_{EH}=\frac{1}{16\pi G}\int_M{\rm d}^4x N\sqrt{h}(\inHS R+{\rm Tr}(K)^2-K^{ij}K_{ij})
+		\end{align}
+	\end{frame}
+	\begin{frame}
+		\textbf{Constraints:}
+		Mit den Definitionen
+		\begin{align}
+			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{h}\inHS R=0 \label{equ:constraint1}\\
+			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}\\
+			&\pi_{ij}:=\frac{\partial \mathcal{L}}{\partial(\partial_t h_{ij})}
+		\end{align}
+		ergibt sich
+		\begin{align*}
+			\boxed{S_{EH}=\int{\rm d}t\int_\Sigma {\rm d}^3x (\pi^{ij}\partial_t h_{ij}-NH_{\perp}-N^i H_i)}
+		\end{align*}
+		wobei: $G_{ijkl}=\frac{1}{2\sqrt{h}}(h_{ik}h_{jl}+h_{jk}h_{il}-h_{ij}h_{kl})$
+	\end{frame}
+	\begin{frame}
+		Die Constraints erfüllen:
+		\begin{align}
+			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{h}\inHS R=0 \label{equ:constraint1}\\
+			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}
+		\end{align}
+		und die Poissonklammerausdrücke:
+		\begin{align*}
+			&\{H_i(\vec{x}),H_j(\vec{x}^{\,\prime})\}=H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})-H_j(\vec{x})\partial\vec{x}^{\,\prime}_i\delta(\vec{x}-\vec{x}^{\,\prime})\\
+			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=H_\perp(\vec{x})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})\\
+			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=\\
+			&\quad=h^{ij}(\vec{x})H_i(\vec{x})\partial^{\,\prime}_j\delta(\vec{x}-\vec{x}^{\,\prime})-h^{ij}(\vec{x}^{\,\prime})H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})
+		\end{align*}
+		Erstes Problem: $h$ taucht explizit in Poissonklammerausdrücken auf!
+	\end{frame}
+	\begin{frame}
+		Desweiteren besitzten die Constraints eine wichtige Eigenschaft:
+		\begin{theorem}
+			$g$ erfüllt die Einsteingleichungen dann und nur dann wenn auf allen raumartigen Hyperebenen
+			die Constraints (\ref{equ:constraint1}-\ref{equ:constraint2}) erfült sind.
+		\end{theorem}
+		\pause
+		\begin{center}
+			\textbf{super-Hamilton Constraint und super-Momentum Constraint besitzen vollständige dynamische Information über System!}
+		\end{center}
+	\end{frame}
+	\begin{frame}
+		\begin{center}
+			\textbf{Zusammenfassung:}
+		\end{center}
+		\begin{itemize}
+			\item Bisher nur klassische Feldtheorie
+			\pause
+			\item Wir haben einen Hamiltonformalismus der allgemein Relativitätstheorie abgeleitet
+			\pause
+			\item Der nächste Schritt: die Quantisierung
+		\end{itemize}
+	\end{frame}
+\end{document}
