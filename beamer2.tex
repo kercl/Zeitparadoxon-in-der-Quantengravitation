@@ -45,8 +45,86 @@
 		\titlepage
 	\end{frame}
 
-	\begin{frame}{Outline}
+	\begin{frame}{Überblick}
 		\tableofcontents
 	\end{frame}
 
+\section{Kanonische Quantisierung}
+\subsection{Wiederholung am skalaren Feld}
+	\begin{frame}{Wiederholung am skalaren Feld}
+		Lagrangedichte für massives skalares Feld:
+		\begin{align}
+			\mathcal{L}=\frac{1}{2}(\partial_\mu\varphi \partial^\mu\varphi-m^2\varphi^2)
+		\end{align}
+		\pause
+		\textbf{Kanonische Quantisierung:} Feldgrößen werden zu Operatoren\\
+		\pause
+		\textbf{Kommutatorrelationen:}
+		\begin{align}
+			&[\hat{\varphi}(\vec{x}), \hat{\varphi}(\vec{y})]=0=[\hat{\pi}(\vec{x}), \hat{\pi}(\vec{y})] \\
+			&[\hat{\varphi}(\vec{x}), \hat{\pi}(\vec{y})]=i\delta(\vec{x}-\vec{y}).
+		\end{align}
+		Ableitungen werden zu Funktionalableitungen (z.B. Impulsoperator: wirkt auf Wellenfunktion im Ortsbild wie Ableitungsoperator)
+	\end{frame}
+\subsection{Quantisierung der Constraints:}
+	\begin{frame}{Quantisierung der Constraints:}
+		$h_ij$ und $\pi_{ij}$ in den Rang von Operatoren erhoben.
+		\pause
+		Die Constraints 
+		\begin{align}
+			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{h}\inHS R=0 \label{equ:constraint1}\\
+			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}
+		\end{align}
+		\pause
+		\begin{center}
+			Wenden Quantisierungsregeln an
+		\end{center}
+		\pause
+		Für generalisierte Kommutator von Impulse \& Metrik:
+		\begin{align}
+			[h_{ij}(\vec{x}),\pi^{kl}(\vec{x}^{\,\prime})]=\delta^k_{(i}\delta^l_{j)}\delta(\vec{x}-\vec{x}^{\,\prime})
+		\end{align}
+		\pause
+		Die Constrains wirken auf Wellenfunktionen:
+		\begin{align}
+			\hat{H}_\perp\Psi[h]&=0\\
+			\hat{H}_i\Psi[h]&=0.
+		\end{align}
+	\end{frame}
+	\begin{frame}
+		Für super-Hamilton constraint:
+		\begin{align}
+			\boxed{-16\pi G G_{ijkl}\frac{\delta^2\Psi[h]}{\delta h_{ij}\delta h_{kl}}-\frac{1}{16\pi G}\inHS R\Psi[h]=0}
+		\end{align}
+		\begin{center}
+			\textbf{Wheeler-DeWitt Gleichung}
+		\end{center}
+		\pause
+		Zentrales Objekt in der kanonischen Quantisierung der Raumzeit!
+	\end{frame}
+\section{Problem der Zeit}
+	\begin{frame}
+		In Wheeler-DeWitt Gleichung: keine explizite Zeit!
+		In allen Feldtheorien gibt es jedoch bisher einen universellen Zeitparameter
+		\pause
+		\begin{center}Wirft neue Fragen auf:\end{center}
+		\begin{itemize}
+			\item Kann die Zeit zurückgewonnen werden?
+			\item Wenn nein, ist eine Quantentheorie ohne Zeit mit diesen Mitteln sinnvoll modellierbar?
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		Verschiedene Ansätze möglich:
+		\begin{itemize}
+			\item Die Zeit muss vor der Quantisierung spezifiziert werden.
+			\pause
+			\item Die Zeit muss nach der Quantisierung spezifiziert werden.
+			\pause
+			\item Die Zeit ist keine allumfassendes Konzept in einer Theorie der Quantengravitation
+				und tritt nur phänomenologisch auch
+			\pause
+		\end{itemize}
+		Alle Ansätze haben ihre eigenen Vor- und Nachteile.
+	\end{frame}
+	%% TODO: finish %%
 \end{document}

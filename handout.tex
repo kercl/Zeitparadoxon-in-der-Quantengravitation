@@ -295,17 +295,17 @@
 		Zur Beschreibung der dynamischen Phänomene ist es zuerst notwendig eine günstige Darstellung der Metrik
 		zu finden. Dazu wählt man die Länge des Linienelements $ds$ wie folgt:
 		\begin{align}
-			ds^2=&-{\rm (Zeitartiger\ Abstand)}^2+{\rm (Raumartiger\ Abstand)}^2=\notag\\
-			=&-N^2 dt^2+q_{ij}(dx^i+N^i dt)(dx^j+N^j dt).
+			{\rm d}s^2=&-{\rm (Zeitartiger\ Abstand)}^2+{\rm (Raumartiger\ Abstand)}^2=\notag\\
+			=&-N^2 {\rm d}t^2+h_{ij}({\rm d}x^i+N^i {\rm d}t)({\rm d}x^j+N^j {\rm d}t).
 		\end{align}
-		Als Matrix lässt sich die allgemeine Metric $g$ mittels $N,\ N^i$ und $q_{ij}$ schreiben als
+		Als Matrix lässt sich die allgemeine Metric $g$ mittels $N,\ N^i$ und $h_{ij}$ schreiben als
 		\begin{align}
 			[g]=\left(
 			\begin{array}{cccc}
-				-N^2+q_{ij}N^i N^j & q_{1j}N^j & q_{2j}N^j & q_{3j}N^j \\
-				q_{1j}N^j & q_{11} & q_{12} & q_{13}\\
-				q_{2j}N^j & q_{21} & q_{22} & q_{23}\\
-				q_{3j}N^j & q_{31} & q_{32} & q_{33}
+				-N^2+h_{ij}N^i N^j & h_{1j}N^j & h_{2j}N^j & h_{3j}N^j \\
+				h_{1j}N^j & h_{11} & h_{12} & h_{13}\\
+				h_{2j}N^j & h_{21} & h_{22} & h_{23}\\
+				h_{3j}N^j & h_{31} & h_{32} & h_{33}
 			\end{array}\right)
 			\label{equ:gmatrix}
 		\end{align}
@@ -316,7 +316,7 @@
 			S_{EH}=\frac{1}{16\pi G}\int_M{\rm d}^4x \sqrt{-g}R
 		\end{align}
 		wobei $g= {\rm det}(g)$ und $R$ den Ricci-Skalar bezeichnet.
-		$S_{EH}$ lässt sich nun als Funktional auf Lagrangefunktionen mit den Argumenten $N,N^i$ und $q_{ij}$ umschreiben.
+		$S_{EH}$ lässt sich nun als Funktional auf Lagrangefunktionen mit den Argumenten $N,N^i$ und $h_{ij}$ umschreiben.
 		
 		Der aufmerksame Beobachter, stellt fest, dass die erste Spalte der Matrixdarstellung von g aus (\ref{equ:gmatrix}) aus 
 		Summen vielfachen der anderen 3 Spalten geschrieben werden kann, nämlich -- $[g_i]$ sei die $i$-te Spalte, wobei von
@@ -328,11 +328,11 @@
 		\begin{align}
 			g={\rm det}(g)={\rm det}\left(
 			\begin{array}{cccc}
-				-N^2 & q_{1j}N^j & q_{2j}N^j & q_{3j}N^j \\
-				0 & q_{11} & q_{12} & q_{13}\\
-				0 & q_{21} & q_{22} & q_{23}\\
-				0 & q_{31} & q_{32} & q_{33}
-			\end{array}\right)=-N^2 {\rm det}(q).
+				-N^2 & h_{1j}N^j & h_{2j}N^j & h_{3j}N^j \\
+				0 & h_{11} & h_{12} & h_{13}\\
+				0 & h_{21} & h_{22} & h_{23}\\
+				0 & h_{31} & h_{32} & h_{33}
+			\end{array}\right)=-N^2 {\rm det}(h).
 		\end{align}
 		Als nächsten Schritt gilt es, den Ricci-Skalar in den neuen Argumenten auszudrücken. Aus den Gauss-Codazzi Gleichungen folgt unmittelbar
 		\begin{align*}
@@ -342,30 +342,30 @@
 		
 		Daraus ergibt sich mit
 		\begin{align}
-			\pi_{ij}:=\frac{\partial \mathcal{L}}{\partial(\partial_t q_{ij})}.
+			\pi_{ij}:=\frac{\partial \mathcal{L}}{\partial(\partial_t h_{ij})}.
 		\end{align}
 		Ignorieren der Randterme führt schließlich zum Ausdruck
 		\begin{align}
-			S_{EH}=\int{\rm d}t\int_\Sigma {\rm d}^3x (\pi^{ij}\partial_t q_{ij}-NH_{\perp}-N^i H_i).
+			S_{EH}=\int{\rm d}t\int_\Sigma {\rm d}^3x (\pi^{ij}\partial_t h_{ij}-NH_{\perp}-N^i H_i).
 		\end{align}
 		Man erkennt sofort, dass diese Funktion nicht abhängig von $\partial_t N$ und $\partial_t N^i$
 		ist, womit die Ableitungen der der Hamiltonfunktion nach $N$ und $N^i$ konstant entlang der gewählten
 		Zeitentwicklung bleiben. Konkret sind die Größen
 		\begin{align}
-			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{q}\inHS R=0 \label{equ:constraint1}\\
+			&H_{\perp}:=16\pi G G_{ijkl}\pi^{ij}\pi^{kl}-\frac{1}{16\pi G}\sqrt{h}\inHS R=0 \label{equ:constraint1}\\
 			&H^i:=-2\inHS\nabla_j\pi^{ij}=0 \label{equ:constraint2}
 		\end{align}
-		zeitinvariant. Erstere wird super-hamiltonian constraint, mit der super-DeWitt Metrik $G_{ijkl}=\frac{1}{2\sqrt{q}}(q_{ik}q_{jl}+q_{jk}q_{il}-q_{ij}q_{kl})$,
+		zeitinvariant. Erstere wird super-hamiltonian constraint, mit der super-DeWitt Metrik $G_{ijkl}=\frac{1}{2\sqrt{h}}(h_{ik}h_{jl}+h_{jk}h_{il}-h_{ij}h_{kl})$,
 		und zweitere super-momentum constraint genannt.
-		Mit der üblichen Poissonklammern für $q_{ij}$ und $\pi_{ij}$,
+		Mit der üblichen Poissonklammern für $h_{ij}$ und $\pi_{ij}$,
 		\begin{align}
-			\{q_{ij}(\vec{x}),\pi^{kl}(\vec{x}^{\,\prime})\}=\delta^k_{(i}\delta^l_{j)}\delta(\vec{x}-\vec{x}^{\,\prime}),
+			\{h_{ij}(\vec{x}),\pi^{kl}(\vec{x}^{\,\prime})\}=\delta^k_{(i}\delta^l_{j)}\delta(\vec{x}-\vec{x}^{\,\prime}),
 		\end{align}
 		kann gezeigt werden \cite{dirac2001lectures,cjm19510012}, dass die Zwangsbedingungen die Kommutatorrelationen \cite{qg06}
 		\begin{align}
 			&\{H_i(\vec{x}),H_j(\vec{x}^{\,\prime})\}=H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})-H_j(\vec{x})\partial\vec{x}^{\,\prime}_i\delta(\vec{x}-\vec{x}^{\,\prime})\\
 			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=H_\perp(\vec{x})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})\\
-			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=q^{ij}(\vec{x})H_i(\vec{x})\partial^{\,\prime}_j\delta(\vec{x}-\vec{x}^{\,\prime})-q^{ij}(\vec{x}^{\,\prime})H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})
+			&\{H_i(\vec{x}),H_\perp(\vec{x}^{\,\prime})\}=h^{ij}(\vec{x})H_i(\vec{x})\partial^{\,\prime}_j\delta(\vec{x}-\vec{x}^{\,\prime})-h^{ij}(\vec{x}^{\,\prime})H_i(\vec{x}^{\,\prime})\partial_j\delta(\vec{x}-\vec{x}^{\,\prime})
 		\end{align}
 		erfüllen.
 	\subsection{Tieferliegende Rolle der Zwangsbedingungen}
@@ -374,7 +374,7 @@
 		Information wie die einsteinschen Feldgleichungen, wie folgender
 		Satz zeigt:
 		\begin{theorem}
-			Eine Lorentzmetrik $q$ erf\"ullt die einsteinschen Feldgleichungen genau dann, wenn die
+			Eine Lorentzmetrik $h$ erf\"ullt die einsteinschen Feldgleichungen genau dann, wenn die
 			Zwangsbedingungen (\ref{equ:constraint1}-\ref{equ:constraint2}) erf\"ullt sind.
 			\label{thm:full}
 		\end{theorem}
@@ -422,12 +422,12 @@
 		erhällt man die Funktionaldiffernetialgleichungen, welche zusammen mit Satz \ref{thm:full} die Vollständige
 		Information über das Verhalten der Raumzeit enthalten. Die quantisierten Constraints wirken auf Wellenfunktionen folgendermaßen:
 		\begin{align}
-			\hat{H}_\perp\Psi[q]&=0\\
-			\hat{H}_i\Psi[q]&=0.
+			\hat{H}_\perp\Psi[h]&=0\\
+			\hat{H}_i\Psi[h]&=0.
 		\end{align}
 		Ausgeschrieben erhällt man beispielsweise für die Gleichung die sich aus dem Hamilton constraint ergibt:
 		\begin{align}
-			-16\pi G G_{ijkl}\frac{\delta^2\Psi[q]}{\delta q_{ij}\delta q_{kl}}-\frac{1}{16\pi G}\inHS R\Psi[q]=0.
+			-16\pi G G_{ijkl}\frac{\delta^2\Psi[h]}{\delta h_{ij}\delta h_{kl}}-\frac{1}{16\pi G}\inHS R\Psi[h]=0.
 		\end{align}
 		Dieses Result ist als Wheeler-DeWitt Gleichung bekannt und steht hier in allgemeiner Form. Im nächsten Kapitel
 		wird diese Gleichung für ein stark vereinfachtes System betrachtet in dem sie sich auf eine gewöhnliche 
@@ -455,7 +455,7 @@
 		und die darin auftretenden Vor- und Nachteile kurz besprochen.
 		\subsection{Identifikation der Zeit vor der Quantisierung} % matter clocks and reference fluids
 			Die erste Möglichkeit, das Problem der Zeit zu behandeln ist die Identifikation der
-			Zeit als Funktional von $q_{ij}$ und $\pi_{ij}$ vor der Quantisierung. Eine der Realisierungen
+			Zeit als Funktional von $h_{ij}$ und $\pi_{ij}$ vor der Quantisierung. Eine der Realisierungen
 			ist beispielsweise die Implementierung des Zeitbegriffs via ,,Matter Clocks`` und ,,Reference Fluids`` \cite{PhysRevD.43.419,gr-qc/9210011}. %% TODO %%
 		\subsection{Identifikation der Zeit nach der Quantisierung} % cannonical quantum gravity & semiclassical approaches (WKB)
 			Alternativ lässt sich die Zeit auch nach der Quantisierung ,,rekonstruieren``. Prominente 
