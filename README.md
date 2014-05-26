@@ -1,4 +1,4 @@
-Zeitparadoxon-in-der-Quantengravitation
+Zeitparadoxon in der Quantengravitation
 =======================================
 
 Vortrag im Rahmen des Seminars "Ausgewählte Probleme der Quantentheorie" vom Sommersemester 2014.
