@@ -49,8 +49,8 @@
 		ist in ihrer Gesamtheit die Erde (mehr oder weniger) eine Kugel. Jedoch sieht sie von unserer Perspektive aus betrachtet verhältnismäßig flach aus.
 		
 		Die Erde kann als eingebettete Fläche in einem dreidimensionalen Raum angesehen werden.
-		Allgemein bezeichnet man eine eingebettete Manigfaltigkeit mit Dimension $m$ Hyperebene 
-		(im folgenden bezeichnet $\Sigma$ immer eine Hyperebene), falls die die Dimension $m=n-1$. 
+		Allgemein bezeichnet man eine eingebettete Manigfaltigkeit mit Dimension $m$ Hyperfläche
+		(im folgenden bezeichnet $\Sigma$ immer eine Hyperfläche), falls die die Dimension $m=n-1$. 
 		
 		\begin{paragraph}{Die Metrik:} Metriken sind im allgemeinen Abbildungen, die Distanzen messen. In der allgemeinen
 			Relativitätstheorie wird dieses Konzept bekanntlich verallgemeinert, da die Metrik hier auch negative
@@ -70,10 +70,10 @@
 			Als Beispiel kann man sich Zylinderkoordinaten vorstellen. Der Zylinder mit fixem Radius $r$ ist eine 
 			zweidimensionale Mannigfaltigkeit mit der Parametrisierung:
 			\begin{align}
-				\vec{x}(\phi,z)=\left( 
+				\vec{x}(\varphi,z)=\left( 
 				\begin{array}{c}
-				r\cos(\phi)\\
-				r\sin(\phi)\\
+				r\cos(\varphi)\\
+				r\sin(\varphi)\\
 				z
 				\end{array}
 				\right)
@@ -85,14 +85,14 @@
 			\end{figure}
 			Wenn man in Zylinderkoordinaten wechselt, ist ja bekannt, dass das infinitesimale Linienelement nichts anderes als
 			\begin{align*}
-				{\rm d}s^2=r{\rm d}\phi^2 + {\rm d}z^2
+				{\rm d}s^2=r{\rm d}\varphi^2 + {\rm d}z^2
 			\end{align*}
 			ist. Daraus lässt sich, vergleicht man diese Gleichung mit (\ref{equ:infline}), die zugehörige Matrix in der Standardbasis ablesen:
 			\begin{align*}
-				g=\left(\begin{array}{ccc} r & 0\\0 & 1 \end{array}\right).
+				g=\left(\begin{array}{ccc} r^2 & 0\\0 & 1 \end{array}\right).
 			\end{align*}
 			Man sieht hier deutlich: Wenn man einen konstanten Winkel abfährt, wird der zurückgelegte Weg größer falls $r>1$ (der Metriktensor streckt also
-			Wege entlang einer Änderung in $\phi$ entsprechend dem Radius) bzw kleiner falls $r<1$ verglichen mit dem Weg im kartesischen Koordinatensystem,
+			Wege entlang einer Änderung in $\varphi$ entsprechend dem Radius) bzw kleiner falls $r<1$ verglichen mit dem Weg im kartesischen Koordinatensystem,
 			das sich aus Winkel und Höhenangabe zusammensetzt.
 		\end{paragraph}
 		\begin{paragraph}{Die kovariante Ableitung:}
@@ -103,7 +103,7 @@
 			sind einfach nur die Ableitungen der Parametrisierungen. Wieder dienen Zylinderkoordinaten als anschauliches Beispiel. 
 			Die Ableitung der Parametrisierung ergeben
 			\begin{align*}
-				\vec{e}_\phi&=\left(\begin{array}{c} -r\sin(\phi)\\ r\cos(\phi)\\ 0\end{array}\right)\\
+				\vec{e}_\varphi&=\left(\begin{array}{c} -r\sin(\varphi)\\ r\cos(\varphi)\\ 0\end{array}\right)\\
 				\vec{e}_z&=\left(\begin{array}{c} 0\\0\\1\end{array}\right)
 			\end{align*}
 			Nun kann man bekanntlich auch die Ableitung von Vektoren bilden. Geht man naiv vor und nimmt wie zuvor die reguläre Ableitung 
@@ -262,7 +262,7 @@
 		Raumintegral über eine Lagrangedichte, über die wiederum die Wirkung angegeben werden
 		kann:
 		\begin{align}
-			S[\varphi,t]=\int_{t_1}^{t_2}{\rm d}t\int_{\mathbb{R}^3}{\rm d}^3x \mathcal{L}(\phi,\partial_\mu \phi,t).
+			S[\varphi,t]=\int_{t_1}^{t_2}{\rm d}t\int_{\mathbb{R}^3}{\rm d}^3x \mathcal{L}(\varphi,\partial_\mu \varphi,t).
 		\end{align}
 		Variation des Feldes liefert die Euler-Lagrangegleichung für Felder:
 		\begin{align}
@@ -384,7 +384,7 @@
 	\section{Kanonische Quantisierung}
 	\subsection{Allgemeine Wiederholung}
 		Bei der kanonischen Quantisierung geht man von einer Lagrangedichte für ein 
-		Feld aus, und erhebt die klassischen reelen Funktionen $\phi(x)$ und $\pi(x)$ in
+		Feld aus, und erhebt die klassischen reelen Funktionen $\varphi(x)$ und $\pi(x)$ in
 		den Rang von Operatoren.\\
 		Ohne zu tief in die Materie eintauchen zu wollen, ist es als Beispiel aber nichtsdestoweniger
 		hilfreich sich den Fall eines freien massereichen skalaren Feldes zu Gemüte zu führen.
@@ -408,7 +408,7 @@
 		(siehe Fr\'echet Ableitung bzw. G\^ateaux Ableitung).
 		Beispielsweise wirkt der Impulsoperator auf Wellenfunktionen in Ortsdarstellung in quantisierten Feldtheorien folgendermaßen:
 		\begin{align*}
-			\hat{\pi}\Psi[\varphi]=-i\frac{\delta\Psi[\varphi]}{\delta \phi}.
+			\hat{\pi}\Psi[\varphi]=-i\frac{\delta\Psi[\varphi]}{\delta \varphi}.
 		\end{align*}
 		Falls keine Felder beschrieben werden, reduziert sich diese Gleichung auf die altbekannte
 		\begin{align*}
@@ -487,10 +487,10 @@
 			\begin{align}
 				h_{ij}=a(t)^2\gamma_{ij},\quad h^{ij}=\frac{1}{a(t)^2}\gamma^{ij},\quad \sqrt{h}=a^3\sqrt{\gamma}.
 			\end{align}
-			Aus dem Normalenvektor $n=(1/N,\vec{0}^T)^T$ folgt $n_0=(n^0)^{-1}=N$ und somit ergibt sich unmittelbar für die extrinsische Krümmung nach $\label{def:extrcurv}$ und
-			mit den Christoffelsymbolen aus \label{def:christ}:
+			Aus dem Normalenvektor $n=(1/N,\vec{0}^T)^T$ folgt $n_0=(n^0)^{-1}=N$ und somit ergibt sich unmittelbar die extrinsische Krümmung nach $\label{def:extrcurv}$
+			aus den Christoffelsymbolen \label{def:christ}:
 			\begin{align}
-				K_{ij}=-\nabla_i n_j=-\partial_i n_j+\Gamma^\mu_{ji}n_\mu=\frac{1}{N}\Gamma^0_{ji}=-\frac{1}{2N}\partial_t h_{ij}=-\frac{\dot{a}a}{N}\gamma_{ij}.
+				K_{ij}=-\nabla_i n_j=-\partial_i n_j+\Gamma^\mu_{ji}n_\mu=N\Gamma^0_{ji}=-\frac{1}{2N}\partial_t h_{ij}=-\frac{\dot{a}a}{N}\gamma_{ij}.
 			\end{align}
 			Dabei wurde verwendet, dass $g^{00}=N^{-2}$, $g_{0i}=0$ und $g_{ij}=h_{ij}$. Weiters kann $K_{ij}K^{ij}$ und ${\rm Tr}(K)$ berechnet werden:
 			\begin{align}
@@ -503,10 +503,10 @@
 			\begin{align}
 				V(\varphi)=\frac{m^2 \varphi^2}{2}.
 			\end{align}
-			Insofern folgt für die Wirkung
+			Insofern folgt für die Wirkung, die hier um die kosmologische Konstante erweitert wurde:
 			\begin{align}
 				S_{EH}=&\frac{1}{16\pi G}\int{\rm d}t\int_{\mathcal{S}^3}{\rm d}^3 x\, N\sqrt{h}\left(\inHS R-2\Lambda+{\rm Tr}(K)^2-K^{ij}K_{ij}+\right.\notag\\
-						&\qquad\qquad\qquad\quad\qquad\qquad\left.+\frac{1}{2}g^{\mu\nu}\partial_\mu \varphi\partial_\nu \varphi-V(\phi)\right)=\notag\\
+						&\qquad\qquad\qquad\quad\qquad\qquad\left.+\frac{1}{2}g^{\mu\nu}\partial_\mu \varphi\partial_\nu \varphi-V(\varphi)\right)=\notag\\
 					&\frac{1}{16\pi G}\int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda-6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right) \VSthree\\
 					\Rightarrow S_{EH} \propto& \int{\rm d}t\, N a^3\left(\frac{6}{a^2}-2\Lambda-6\frac{\dot{a}^2}{a^2N^2}+\frac{1}{2 N^2}\dot{\varphi}^2-V(\varphi)\right).
 			\end{align}
@@ -516,16 +516,16 @@
 			
 			Der nächste Schritt ist es, sich die Hamiltonfunktion zu berechnen. Für die konjugierten Impuls ergibt sich sofort
 			\begin{align}
-				p_a=\frac{\partial L}{\partial \dot{a}}=-12\frac{a\dot{a}}{N},\quad p_\phi=\frac{\partial L}{\partial \dot{\phi}}=\frac{a^3\dot{\phi}}{N}.
+				p_a=\frac{\partial L}{\partial \dot{a}}=-12\frac{a\dot{a}}{N},\quad p_\varphi=\frac{\partial L}{\partial \dot{\varphi}}=\frac{a^3\dot{\varphi}}{N}.
 			\end{align}
 			Daher ist die Hamiltonfunktion von $L$:
 			\begin{align*}
-				H=&p_a \dot{a}+p_\phi \dot{\phi}-L=\\
-				=&N\left(\frac{p_a^2}{24a}-\frac{p_\phi}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3\right)\VSthree=N H_\perp.
+				H=&p_a \dot{a}+p_\varphi \dot{\varphi}-L=N H_\perp\propto\\
+				\propto&N\left(\frac{p_a^2}{24a}-\frac{p_\varphi}{2a^3}-6a+2a^3\Lambda+V(\varphi)a^3\right).
 			\end{align*}
 			Aus den Betrachtungen im Kapitel über den ADM Formalismus erwarten wir, dass
 			\begin{align*}
-				H_\perp=\frac{p_a^2}{24a}-\frac{p_\phi^2}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3
+				H_\perp=\frac{p_a^2}{24a}-\frac{p_\varphi^2}{2a^3}-6a+2a^3\Lambda+V(\varphi)a^3
 			\end{align*}
 			verschwindet. Tatsächlich lässt sich dies auch leicht mithilfe der Euler-Langrangegleichung zeigen. Bildet man nämlich
 			\begin{align*}
@@ -533,36 +533,39 @@
 			\end{align*}
 			ergibt sich, wobei die Ableitung $\frac{\partial L}{\partial \dot{N}}$ offensichtlich verschwindet:
 			\begin{align*}
-				0=\frac{{\rm d}L}{{\rm d } N}&=6a-2a^3 \Lambda+6\frac{a\dot{a}^2}{N^2}-\frac{a^3\dot{\phi}^2}{2N^2}-V(\phi)a^3=\\
-				&=\frac{p_a^2}{24a}-\frac{p_\phi^2}{2a^3}-6a+2a^3\Lambda+V(\phi)a^3=H_\perp.
+				0=\frac{{\rm d}L}{{\rm d } N}&=6a-2a^3 \Lambda+6\frac{a\dot{a}^2}{N^2}-\frac{a^3\dot{\varphi}^2}{2N^2}-V(\varphi)a^3=\\
+				&=\frac{p_a^2}{24a}-\frac{p_\varphi^2}{2a^3}-6a+2a^3\Lambda+V(\varphi)a^3=H_\perp.
 			\end{align*}
 			Desweiteren lässt sich an diesem Modell auch Satz \ref{thm:full} verdeutlichen. Bildet man die verbleibenden Bewegungsgleichungen
 			mit der Eichung $N=1$ erhällt man unmittelbar:
 			\begin{align}
-				\dot{a}^2+12+a^2(-\dot{\phi}^2+2V(\phi)+4\Lambda)&=0\\
-				\ddot{\phi}+3\frac{\dot{a}}{a}\dot{\phi}+V^\prime(\phi)&=0\\
-				\ddot{a}+\frac{1}{2}\left(\frac{\dot{a}}{a}-\frac{1}{a}+a\Lambda-\frac{a\dot{\phi}^2}{4}+\frac{V(\phi)a}{2}\right)&=0
+				\dot{a}^2+12+a^2(-\dot{\varphi}^2+2V(\varphi)+4\Lambda)&=0\\
+				\ddot{\varphi}+3\frac{\dot{a}}{a}\dot{\varphi}+V^\prime(\varphi)&=0\\
+				\ddot{a}+\frac{1}{2}\left(\frac{\dot{a}}{a}-\frac{1}{a}+a\Lambda-\frac{a\dot{\varphi}^2}{4}+\frac{V(\varphi)a}{2}\right)&=0
 			\end{align}
 			Differenziert man die erste Gleichung und setz zweite ein, ist das Resultat die dritte Gleichung.
 			
 			Der super-Hamilton constraint für das gewählte Minisuperspace Modell ist somit
 			\begin{align}
-				H_\perp=p_a^2-12p_\phi^2-a^2(144+48 a^2 \Lambda+24V(\phi)a^3)=0,
+				H_\perp=p_a^2-12p_\varphi^2-a^2(144+48 a^2 \Lambda+24V(\varphi)a^3)=0,
 			\end{align}
-			was nach Reskalierung von $N$, $\Lambda$ und $V(\phi)$ equivalent zu der Form
+			was nach Reskalierung von $N$, $\Lambda$ und $V(\varphi)$ equivalent zu der Form
 			\begin{align}
-				H_\perp=p_a^2-p_\phi^2-a^2(1+a^2 (\Lambda+V(\phi)))=0
+				H_\perp=p_a^2-p_\varphi^2-a^2(1+a^2 (\Lambda+V(\varphi)))=0
 			\end{align}
-			ist. Die Wheeler-DeWitt Gleichung für ein solches System ist -- nach Ersetzung von $p_a=-i\veps\frac{\partial}{\partial a}$ und $p_\phi=-i\veps\frac{\partial}{\partial \phi}$; die Bedeutung von $\veps$ wird noch klar werden -- eine
+			ist. Die Wheeler-DeWitt Gleichung für ein solches System ist -- nach Ersetzung von $p_a=-i\veps\frac{\partial}{\partial a}$ und $p_\varphi=-i\veps\frac{\partial}{\partial \varphi}$; die Bedeutung von $\veps$ wird noch klar werden -- eine
 			partielle Differentialgleichung zweiter Ordnung:
 			\begin{align}
-				\left(-\veps^2\frac{\partial^2}{\partial a^2}+\veps^2\frac{\partial^2}{\partial \phi^2}-a^2(1+a^2 (\Lambda+V(\phi))\right)\Psi(a,\phi)=0,
+				\left(-\veps^2\frac{\partial^2}{\partial a^2}+\veps^2\frac{\partial^2}{\partial \varphi^2}-a^2(1+a^2 (\Lambda+V(\varphi))\right)\Psi(a,\varphi)=0,
 			\end{align}
 			beziehungsweise ohne skalares Feld eine Gleichung, ähnlich der stationären Schrödingergleichung:
 			\begin{align}
 				\left(-\veps^2\frac{{\rm d}^2}{{\rm d}a^2}-a^2(1+a^2\Lambda)\right)\Psi(a)=0.
 			\end{align}
-			Es stellt sich nun die Frage ob $a$ als Zeit interpretiert werden kann. 
+			Da $\Psi$ die Wellenfunktion diese einfachen Universums darstellt, müsste sich in dieser Gleichung 
+			irgendwo ein Zeitbegriff verstecken. Analysieren kann man eine solche Gleichung beispielsweise mithilfe einer
+			analytischen Näherung wie der WKB Methode. Das immer stärker werdende Oszillieren der Amplitude wäre
+			beispielsweise eine mögliche Manifestation der Zeit in diesem Modell.
 		\subsection{Zeitfreie Theorien}
 			Der Vollständigkeit halber ist es an dieser Stelle noch notwendig zu Erwähnen,
 			dass ein vollständig zeitfreies Modell ebenfalls ein valider Kandidat für eine Theorie der Quantengravitation darstellt. In ihm ist das Universum

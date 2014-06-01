@@ -26,7 +26,7 @@
 \newcommand{\residue}{\operatorname{Res}}
 \newcommand{\veps}{\varepsilon}
 \newcommand{\vx}{\vec{x}}
-\newcommand{\vp}{\vec{p}}
+\newcommand{\vy}{\vec{y}}
 \newcommand{\vacuumt}{\langle 0 |}
 \newcommand{\vacuum}{| 0 \rangle}
 \newcommand{\Res}{\operatorname{Res}}
@@ -79,7 +79,7 @@
 			$M$ is eingebettet.\\
 			\pause
 			\item Dimension von $M$ gleich $m-1$:\\
-			$M$ ist eine Hyperebene
+			$M$ ist eine Hyperfl\"ache
 		\end{itemize}
 	\end{frame}
 \subsection{Metrik}
@@ -102,11 +102,11 @@
 		\begin{center}
 			\include{zylinder}
 		\end{center}
-		Metriktensor f\"ur diese Beispiel: $g=\left(\begin{array}{cc} r & 0 \\ 0 & 1 \end{array}\right)$
+		Metriktensor f\"ur diese Beispiel: $g=\left(\begin{array}{cc} r^2 & 0 \\ 0 & 1 \end{array}\right)$
 	\end{frame}
 \subsection{Kovariante Ableitung}
 	\begin{frame}{Kovariante Ableitung}
-		Betrachten Ableitungsbegriff für eingebettete Ebenen in $\mathbb{R}^3$:
+		Betrachten Ableitungsbegriff für eingebettete Fl\"achen in $\mathbb{R}^3$:
 		\begin{itemize}
 		\item Benötigen Differentiatonsbegriff, der die Deformiertheit der Mannigfaltigkeit berücksichtigt.\\
 		\pause
@@ -116,9 +116,9 @@
 		\end{itemize}
 	\end{frame}
 	\begin{frame}
-		Tangentialraum ($T_p(M)$): Vektorraum an jede Punkt der Mannigfaltigkeit
+		Tangentialraum ($T_p(M)$): Vektorraum an jedem Punkt der Mannigfaltigkeit
 		\begin{itemize}
-			\item Für eindimensionale Kurve: Alle vielfache des Tangentenvektors
+			\item Für eindimensionale Kurve: Alle Vielfache des Tangentenvektors
 			\item Für Fläche: Linearkombinationen von 2 Tangentenvektoren
 		\end{itemize}
 		\pause
@@ -130,13 +130,13 @@
 	\begin{frame}
 		Situation für zweidimensionale Riemannsche Mannigfaltigkeiten:
 		\begin{itemize}
-			\item Ableiten eines Vektors $v=a \vx_u+b\vx_v$ entlang Kurve
+			\item Ableiten eines Vektors $\vy=a \vx_u+b\vx_v$ entlang Kurve
 			\pause
 			\item Identifzieren der Vektoren $\vx_{uu},\ \vx_{uv}$ und $\vx_{vv}$:
 				\begin{align*}
-					\vec{x}_{uu}&=\Gamma^1_{11} \vx_u+\Gamma^2_{11}\vx_v+L_1 n\\
-					\vx_{uv}&=\Gamma^1_{12}\vx_u+\Gamma^2_{12}\vx_v +L_2 n\\
-					\vx_{vv}&=\Gamma^1_{22}\vx_u+\Gamma^2_{22}\vx_v+L_3 n
+					\vec{x}_{uu}&=\Gamma^1_{11} \vx_u+\Gamma^2_{11}\vx_v+L_1 \vec{n}\\
+					\vx_{uv}&=\Gamma^1_{12}\vx_u+\Gamma^2_{12}\vx_v +L_2 \vec{n}\\
+					\vx_{vv}&=\Gamma^1_{22}\vx_u+\Gamma^2_{22}\vx_v+L_3 \vec{n}
 				\end{align*}
 			\pause
 			\item In Ableitung einsetzen
@@ -146,7 +146,7 @@
 	\begin{frame}
 		Ignorieren der Normalkomponenten:
 		\begin{align*}
-			\frac{{\rm D} v(t)}{{\rm d}t}=\nabla_{v(t)} v(t) :=& (\dot{a} + \Gamma^1_{11}a^2+\Gamma^1_{12}ab+\Gamma^1_{22}b^2)\vx_u+\notag\\
+			\frac{{\rm D} \vy(t)}{{\rm d}t}=\nabla_{\vy(t)} v(t) :=& (\dot{a} + \Gamma^1_{11}a^2+\Gamma^1_{12}ab+\Gamma^1_{22}b^2)\vx_u+\notag\\
 			+&(\dot{b} + \Gamma^2_{11}a^2+\Gamma^2_{12}ab+\Gamma^2_{22}b^2)\vx_v.
 		\end{align*}
 		\pause
@@ -162,10 +162,10 @@
 		Zwei zentrale Begriffe:
 		\begin{itemize}
 			\item \textbf{Intrinsische Krümmung}:\\
-				Unabhängig vom Einbettungsraum -- Zylinder hat die selbe intrinsische Krümmung wie eine Fläche
+				Unabhängig vom Einbettungsraum -- Zylinder hat die selbe intrinsische Krümmung wie eine Ebene
 			\pause
 			\item \textbf{Extrinisische Krümmung}:\\
-				Abhängig von der Wahl der Einbettung -- Zylinder ist gekrümmmte Fläche im $\mathbb{R}^3$, aber einfache Fläche nicht
+				Abhängig von der Wahl der Einbettung -- Zylinder ist gekrümmmte Fläche im $\mathbb{R}^3$, aber einfache Ebene nicht
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{Krümmung}
@@ -214,14 +214,14 @@
 				\end{center}
 	\end{frame}
 	\begin{frame}
-		Zusammenhang zwischen Größen der Hyperebene und des Umgebungsraumes:
+		Zusammenhang zwischen Größen der Hyperebene und des Umgebungsraumes (hier f\"ur 3-dimensionale Mannigfaltigkeit in 4-dimensionalem Umgebungsraum):
 		\begin{center}
 			\textbf{Gauss-Codazzi Gleichung:}
 		\end{center}
 		\begin{align}
 			{P^\mu}_\alpha{P^\nu}_\beta{P^\gamma}_\rho{P^\sigma}_\delta {R^\rho}_{\sigma\mu\nu}={\inHS R^\gamma}_{\delta\alpha\beta}+{K^\gamma}_\alpha K_{\delta\beta}-{K^\gamma}_\beta K_{\alpha\delta}
 		\end{align}
-		Wobei $P$ der Projektionsoperator auf den die Hyperebene bezeichnet.
+		Wobei $P$ der Projektionsoperator auf den die Hyperfl\"ache, $R$ den Riemannschen Krümmungstensor des Umgebungsraumes und $\inHS R$ den Krümmungstensor der Hyperfläche bezeichnet.
 	\end{frame}
 \section{Feldtheorien und ADM-Formalismus}
 \begin{frame}
@@ -231,7 +231,7 @@
 \end{frame}
 \subsection{Rückblick: klassische Feldtheorien}
 	\begin{frame}{Rückblick: klassische Feldtheorien}
-		\textbf{klassischer Mechanik}: generalisierte Koordinaten $q_i(t)$ beschreiben System\\
+		\textbf{klassische Mechanik}: generalisierte Koordinaten $q_i(t)$ beschreiben System\\
 		\textbf{Feldtheorien}: Anstatt den diskreten Indizes $\rightarrow$ kontinuierliche Größen $\varphi(\vec{x},t)$\\
 		\pause
 		Wirkung:
@@ -250,11 +250,11 @@
 		\begin{align}
 			\mathcal{H}=\pi\dot{\varphi}-\mathcal{L},
 		\end{align}
-		mit generalisiertem Impuls: $\pi=\frac{\partial\mathcal{L}}{\partial \dot{\varphi}}$
+		mit generalisierter Impulsdichte: $\pi=\frac{\partial\mathcal{L}}{\partial \dot{\varphi}}$
 	\end{frame}
 \subsection{ADM-Formalismus}
 	\begin{frame}{ADM-Formalismus}
-		Zerteile Raumzeit in Schichten aus spacelike-Hyperebenen
+		Zerteile Raumzeit in Schichten aus spacelike-Hyperflächen
 		\begin{center}
 			\include{foliationSmall}
 		\end{center}
@@ -262,13 +262,13 @@
 			M=\bigcup_{t\in\mathbb{R}}\Sigma(t)
 		\end{align}
 		\pause
-		Ist nicht immer möglich: Hyperebenen müssen orientierbar sein und es dürfen keine Zeitzyklen auftreten
+		Ist nicht immer möglich: Hyperflächen müssen orientierbar sein und es dürfen keine Zeitzyklen auftreten
 	\end{frame}
 	\begin{frame}
 		Metrik im ADM-Formalismus:
 		\begin{align}
 			{\rm d}s^2=&-{\rm (Zeitartiger\ Abstand)}^2+{\rm (Raumartiger\ Abstand)}^2=\notag\\
-			=&-N^2 {\rm d}t^2+q_{ij}({\rm d}x^i+N^i {\rm d}t)({\rm d}x^j+N^j {\rm d}t).
+			=&-N^2 {\rm d}t^2+h_{ij}({\rm d}x^i+N^i {\rm d}t)({\rm d}x^j+N^j {\rm d}t).
 		\end{align}
 	\end{frame}
 	\begin{frame}
@@ -314,12 +314,12 @@
 	\begin{frame}
 		Desweiteren besitzten die Constraints eine wichtige Eigenschaft:
 		\begin{theorem}
-			$g$ erfüllt die Einsteingleichungen dann und nur dann wenn auf allen raumartigen Hyperebenen
-			die Constraints (\ref{equ:constraint1}-\ref{equ:constraint2}) erfült sind.
+			$g$ erfüllt die Einsteingleichungen dann und nur dann wenn auf allen raumartigen Hyperflächen
+			die Constraints (\ref{equ:constraint1}-\ref{equ:constraint2}) erfüllt sind.
 		\end{theorem}
 		\pause
 		\begin{center}
-			\textbf{super-Hamilton Constraint und super-Momentum Constraint besitzen vollständige dynamische Information über System!}
+			\textbf{super-Hamilton Constraint und super-Momentum Constraint besitzen vollständige dynamische Information des Systems!}
 		\end{center}
 	\end{frame}
 	\begin{frame}
@@ -331,7 +331,7 @@
 			\pause
 			\item Wir haben einen Hamiltonformalismus der allgemein Relativitätstheorie abgeleitet
 			\pause
-			\item Der nächste Schritt: die Quantisierung
+			\item Der nächste Schritt: Quantisierung
 		\end{itemize}
 	\end{frame}
 \end{document}
